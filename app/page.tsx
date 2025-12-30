@@ -12,7 +12,9 @@ const Home = async () => {
      console.log('component? from server');
     return (
         <section>
-            <h1 className={"text-center text-gradient text-6xl font-semibold max-sm:text-4xl"}>Adopt a dog<br/>Adoption saves lives.</h1>
+            <h1 className={"text-center text-gradient text-6xl font-semibold max-sm:text-4xl"}>
+                Adopt a dog<br/>Adoption saves lives.</h1>
+            <div className={`min-h-screen`}>home content</div>
         </section>
         // <div className={"grid grid-cols-1 sm:grid-cols-2 md:grid-cols"}>
         //     <p>test</p>
