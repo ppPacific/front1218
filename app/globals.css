@@ -46,6 +46,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --title-font-font-size-value: 3.0;
 }
 @theme inline {
   --color-background: var(--background);
@@ -163,6 +164,10 @@
   @apply flex items-center justify-center;
 }
 
+.home-title{
+  font-size: calc((var(--title-font-font-size-value) - 1) * 1.2vw + 1rem);
+}
+
 /*@utility text-gradient {*/
 /*  @apply to-blue bg-gradient-to-b from-white via-white bg-clip-text font-semibold text-transparent;*/
 /*}*/
@@ -182,11 +187,11 @@
   body {
     @apply bg-background text-foreground;
   }
-  h1 {
-    @apply text-gradient text-6xl font-semibold max-sm:text-4xl;
-  }
+  /*h1 {*/
+  /*  @apply text-gradient text-6xl font-semibold max-sm:text-4xl;*/
+  /*}*/
 
-  h3 {
-    @apply font-schibsted-grotesk text-2xl font-bold;
-  }
+  /*h3 {*/
+  /*  @apply font-schibsted-grotesk text-2xl font-bold;*/
+  /*}*/
 }

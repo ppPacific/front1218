@@ -4,10 +4,8 @@ import "./globals.css";
 
 import {ClerkProvider, SignedIn, SignedOut, SignInButton, SignUpButton, UserButton} from "@clerk/nextjs";
 import {ThemeProvider} from "@/components/ThemeProvider";
-import {Button} from "@/components/ui/button";
-import {ModeToggle} from "@/components/ModeToggle";
 import LightRays from "@/components/LightRays";
-import {FolderLike} from "@/components/FolderLike";
+import NavBar from "@/components/NavBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,27 +49,7 @@ export default async function RootLayout({
                                   Rescued
                               </div>
                           </div>
-                            <div className={`flex items-center justify-end`}>
-                                <SignedOut>
-                                    <SignInButton mode={"modal"}>
-                                        <Button
-                                            variant={'outline'}
-                                            className="shadow-md text-xs sm:text-sm sm:h-10 px-2 sm:px-4 cursor-pointer">
-                                            Sign In
-                                        </Button>
-                                    </SignInButton>
-                                    <SignUpButton>
-                                        <Button className="bg-gradient-to-r from-green-400 to-blue-500 text-xs sm:text-sm sm:h-10 px-2 sm:px-4 cursor-pointer">
-                                            Sign Up
-                                        </Button>
-                                    </SignUpButton>
-                                </SignedOut>
-                                <SignedIn>
-                                    <UserButton />
-                                </SignedIn>
-                                <ModeToggle />
-                                <FolderLike />
-                            </div>
+                            <NavBar />
 
                       </div>
 

@@ -12,7 +12,7 @@ const Home = async () => {
      console.log('component? from server');
     return (
         <section>
-            <h1 className={"text-center text-gradient text-6xl font-semibold max-sm:text-4xl"}>
+            <h1 className={"text-center text-gradient font-semibold home-title"}>
                 Adopt a dog<br/>Adoption saves lives.</h1>
             <div className={`min-h-screen`}>home content</div>
         </section>
