@@ -2,11 +2,14 @@ import React from 'react'
 import {Button} from "@/components/ui/button";
 import {ModeToggle} from "@/components/ModeToggle";
 import {FolderLike} from "@/components/FolderLike";
-import {SignedIn, SignedOut, SignInButton, SignUpButton, UserButton} from "@clerk/nextjs";
+import {SignedIn, SignedOut, SignInButton, SignUpButton, useAuth, UserButton} from "@clerk/nextjs";
 import {currentUser} from "@clerk/nextjs/server";
+import {useTheme} from "next-themes";
 
-const NavBar = () => {
-    // const user = await currentUser()
+const MobileNav = () => {
+
+    const {isSignedIn} = useAuth()
+    const {theme, setTheme} = useTheme();
     return (
         <div className={`flex items-center justify-end`}>
             <SignedOut>

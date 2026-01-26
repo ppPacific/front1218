@@ -50,7 +50,8 @@ export default async function RootLayout({
                               </div>
                           </div>
                             <NavBar />
-
+                            {/*desktopnav*/}
+                            {/*mobailnav*/}
                       </div>
 
                   </header>

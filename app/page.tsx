@@ -1,4 +1,7 @@
 import {useTranslations} from "next-intl";
+import EventCard from "@/components/EventCard";
+import {events} from "@/lib/constants";
+
 
 const Home = async () => {
     // const t = useTranslations('home')
@@ -9,12 +12,27 @@ const Home = async () => {
     const posts = await fetchSample.json();
     //  const response = await fetch('https://localhost:3000/api/books');
     // const books = await response.json();
-     console.log('component? from server');
+    console.log(posts);
+    console.log('page component? from server');
     return (
         <section>
             <h1 className={"text-center text-gradient font-semibold home-title"}>
                 Adopt a dog<br/>Adoption saves lives.</h1>
-            <div className={`min-h-screen`}>home content</div>
+            {/*<div className={`min-h-screen`}>*/}
+                <div className="mt-20 space-y-7">
+                    <h3>Featured Events</h3>
+
+                    <ul className="events">
+                        {events && events.length > 0 && events.map((event: IEvent) => (
+                            <li key={event.title} className="list-none">
+                                <EventCard {...event} />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            {/*</div>*/}
+
+
         </section>
         // <div className={"grid grid-cols-1 sm:grid-cols-2 md:grid-cols"}>
         //     <p>test</p>

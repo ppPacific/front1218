@@ -167,6 +167,29 @@
 .home-title{
   font-size: calc((var(--title-font-font-size-value) - 1) * 1.2vw + 1rem);
 }
+#event-card {
+  @apply flex flex-col gap-3;
+
+  p {
+    @apply text-sm font-light;
+  }
+
+  .poster {
+    @apply h-[300px] w-full rounded-lg object-cover;
+  }
+
+  .title {
+    @apply text-[20px] font-semibold line-clamp-1;
+  }
+
+  .datetime {
+    @apply flex flex-row flex-wrap items-center gap-4;
+
+  }
+  .datetime div {
+    @apply flex flex-row gap-2 ;
+  }
+}
 
 /*@utility text-gradient {*/
 /*  @apply to-blue bg-gradient-to-b from-white via-white bg-clip-text font-semibold text-transparent;*/
