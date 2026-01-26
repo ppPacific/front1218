@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "bubbletea.com",
-  description: "Best bubbletea franchise across Asia and Europe",
+  description: "Adoptions save lives",
 };
 
 export default async function RootLayout({
