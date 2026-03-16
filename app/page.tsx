@@ -12,7 +12,7 @@ const Home = async () => {
     const posts = await fetchSample.json();
     //  const response = await fetch('https://localhost:3000/api/books');
     // const books = await response.json();
-    console.log(posts);
+    //console.log(posts);
     console.log('page component? from server');
     return (
         <section>
