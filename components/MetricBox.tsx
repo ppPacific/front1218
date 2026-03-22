@@ -4,7 +4,7 @@ import Image from "next/image";
 interface Props {
     title: string;
     image: string;
-    slug: string;
+    slug?: string;
     location: string;
     date: string;
     time: string;
@@ -12,7 +12,7 @@ interface Props {
 
 const MetricBox = ({ title, image, slug, location, date, time }: Props) => {
     return (
-        <Link href={`/events/${slug}`} id="event-card">
+        <Link href={`/events/${slug}`} id="metric-card">
             <Image src={image} alt={title} width={410} height={300} className="poster" />
 
             <div className="flex flex-row gap-2">
@@ -22,18 +22,18 @@ const MetricBox = ({ title, image, slug, location, date, time }: Props) => {
 
             <p className="title">{title}</p>
 
-            <div className="datetime">
-                <div>
-                    <Image src="/icons/calendar.svg" alt="date" width={14} height={14} />
-                    <p>{date}</p>
-                </div>
-                <div>
-                    <Image src="/icons/clock.svg" alt="time" width={14} height={14} />
-                    <p>{time}</p>
-                </div>
-            </div>
+            {/*<div className="datetime">*/}
+            {/*    <div>*/}
+            {/*        <Image src="/icons/calendar.svg" alt="date" width={14} height={14} />*/}
+            {/*        <p>{date}</p>*/}
+            {/*    </div>*/}
+            {/*    <div>*/}
+            {/*        <Image src="/icons/clock.svg" alt="time" width={14} height={14} />*/}
+            {/*        <p>{time}</p>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </Link>
     )
 }
 
-export default EventCard
+export default MetricBox
