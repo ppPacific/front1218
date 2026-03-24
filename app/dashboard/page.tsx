@@ -1,8 +1,15 @@
 import React from 'react'
-import {useTranslations} from "next-intl";
 import {events} from "@/lib/constants";
 import MetricBox from "@/components/MetricBox";
 
+const dataSet01 = [
+    {adoptRate:3,
+    visitTraffic:30,
+    emailRate:20,
+        socialmediaRate:40,
+
+    }
+]
 const Page = () => {
     // const t = useTranslations("home");
     return (
