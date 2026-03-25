@@ -1,8 +1,13 @@
 import React from 'react'
 import {events} from "@/lib/constants";
 import MetricBox from "@/components/MetricBox";
-
-const dataSet01 = [
+interface PanelDataI {
+    adoptRate: number,
+    visitTraffic: number,
+    emailRate: number,
+    socialmediaRate: number
+}
+const dataSet01:PanelDataI[] = [
     {adoptRate:3,
     visitTraffic:30,
     emailRate:20,
