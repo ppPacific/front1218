@@ -12,7 +12,7 @@ const dataSet01:PanelDataI[] = [
     visitTraffic:30,
     emailRate:20,
         socialmediaRate:40,
-
+    queryRate:20,
     }
 ]
 const Page = () => {
