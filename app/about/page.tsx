@@ -5,8 +5,8 @@ const Page = () => {
     // const t = useTranslations("home");
     return (
         <div>
-            about Page
-            <h2>Youkoso!</h2>
+
+            <h2>about the Developer</h2>
         </div>
     )
 }

@@ -5,7 +5,8 @@ interface PanelDataI {
     adoptRate: number,
     visitTraffic: number,
     emailRate: number,
-    socialmediaRate: number
+    socialmediaRate: number,
+    queryRate: number
 }
 const dataSet01:PanelDataI[] = [
     {adoptRate:3,
