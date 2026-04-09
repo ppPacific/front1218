@@ -12,3 +12,13 @@ export const events: EventItem[] = [
     {image:'/images/img_octdog.jpg',title:'Adopt 2',slug:'event-dog-2',location:'event-dog-1',date:'Date-1',time:'Time-1'},
     // {image:'/images/img_octdog.jpg',title:'Adopt 3',slug:'event-dog-3',location:'event-dog-1',date:'Date-1',time:'Time-1'},
 ]
+
+
+export const advancedOperationsMetrics = {
+    Occupancy_Rate: 98,
+    Intake_Number: 8,
+    Release_Rate: 12,
+    Avg_Length_Of_Stay: '8.5yrs',
+    Adoption_Number: 3,
+    Return_To_Owner_Rate: 40,
+}
