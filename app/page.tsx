@@ -1,6 +1,7 @@
 import {useTranslations} from "next-intl";
 import EventCard from "@/components/EventCard";
 import {events} from "@/lib/constants";
+import SearchBar from "@/components/SearchBar";
 
 
 const Home = async () => {
@@ -21,7 +22,7 @@ const Home = async () => {
             {/*<div className={`min-h-screen`}>*/}
                 <div className="mt-20 space-y-7">
                     <h3>Featured Events</h3>
-
+                    <SearchBar />
                     <ul className="events">
                         {events && events.length > 0 && events.map((event: IEvent) => (
                             <li key={event.title} className="list-none">
