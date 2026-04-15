@@ -52,8 +52,8 @@ export default async function RootLayout({
                                   </div>
                               </div>
                               <NavBar />
-                              {/*desktopnav*/}
-                              {/*mobailnav*/}
+                              {/*desktop nav*/}
+                              {/*mobile nav*/}
                           </div>
 
                       </header>

@@ -27,7 +27,7 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
                 const parsed = JSON.parse(raw) as string[];
                 setWishlist(parsed.slice(0, MAX_WISHLIST_ITEMS));
             }
-            console.log(JSON.parse(raw))
+
         } catch {}
     }, []);
 

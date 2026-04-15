@@ -16,7 +16,7 @@ export function FolderLike() {
     const { theme,setTheme } = useTheme();
 
     return (
-        // <DropdownMenu>
+
         //     <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon"
                         onClick={() => console.log('open liked')}>

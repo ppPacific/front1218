@@ -4,11 +4,11 @@ import {ModeToggle} from "@/components/ModeToggle";
 import {FolderLike} from "@/components/FolderLike";
 import {SignedIn, SignedOut, SignInButton, SignUpButton, UserButton} from "@clerk/nextjs";
 import {currentUser} from "@clerk/nextjs/server";
-
+import { Search } from 'lucide-react';
 const NavBar = () => {
     // const user = await currentUser()
     return (
-        <div className={`flex items-center justify-end`}>
+        <div className={`flex items-center justify-end gap-x-2`}>
             <SignedOut>
                 <SignInButton mode={"modal"}>
                     <Button
@@ -26,6 +26,7 @@ const NavBar = () => {
             <SignedIn>
                 <UserButton />
             </SignedIn>
+            <Search />
             <ModeToggle />
             <FolderLike />
         </div>
