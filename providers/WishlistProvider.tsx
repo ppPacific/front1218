@@ -1,17 +1,18 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-
+import { toast } from "sonner";
 type WishlistContextType = {
     wishlist: string[];
     isBookmarked: (dogId: string) => boolean;
     toggleBookmark: (dogId: string) => void;
     clearWishlist: () => void;
     mounted: boolean;
+    maxWishlistItems: number;
 };
 
 export const WishlistContext = createContext<WishlistContextType | null>(null);
-
+const MAX_WISHLIST_ITEMS = 5;
 const STORAGE_KEY = "kennel:guest_wishlist";
 
 export function WishlistProvider({ children }: { children: React.ReactNode }) {
@@ -22,30 +23,49 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
         setMounted(true);
         try {
             const raw = window.localStorage.getItem(STORAGE_KEY);
-            if (raw) setWishlist(JSON.parse(raw));
+            if (raw) {
+                const parsed = JSON.parse(raw) as string[];
+                setWishlist(parsed.slice(0, MAX_WISHLIST_ITEMS));
+            }
             console.log(JSON.parse(raw))
-            console.log(`provider first render already hv key`)
         } catch {}
     }, []);
 
     useEffect(() => {
         if (!mounted) return;
-        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(wishlist));
+        try {
+            window.localStorage.setItem(STORAGE_KEY, JSON.stringify(wishlist));
+        } catch (error) {
+            console.error("Failed to update wishlist", error);
+        }
     }, [wishlist, mounted]);
 
     const value = useMemo(
         () => ({
             wishlist,
+            mounted,
+            maxWishlistItems: MAX_WISHLIST_ITEMS,
             isBookmarked: (dogId: string) => wishlist.includes(dogId),
             toggleBookmark: (dogId: string) => {
-                setWishlist((prev) =>
-                    prev.includes(dogId)
-                        ? prev.filter((id) => id !== dogId)
-                        : [...prev, dogId]
+                setWishlist((prev) => {
+                        const inList = prev.includes(dogId);
+
+                        if (prev.length >= MAX_WISHLIST_ITEMS) {
+                            if (inList) return prev.filter((id) => id !== dogId);
+                            toast(`Wishlist limit reached. You can save up to ${MAX_WISHLIST_ITEMS} dogs.`);
+                            return prev;
+                        } else {
+                            if (!inList) {
+                                return [...prev, dogId];
+                            }
+                            return prev.filter((id) => id !== dogId);
+                        }
+
+                    }
                 );
             },
             clearWishlist: () => setWishlist([]),
-            mounted,
+
         }),
         [wishlist, mounted]
     );
@@ -53,7 +73,7 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
     return (
         <WishlistContext.Provider value={value}>
             {children}
-            </WishlistContext.Provider>
+        </WishlistContext.Provider>
     );
 }
 

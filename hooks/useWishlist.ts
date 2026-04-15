@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "kennel:guest_wishlist";
+const MAX_WISHLIST_ITEMS = 5;
 
 export function useWishlist() {
     const [wishlist, setWishlist] = useState<string[]>([]);

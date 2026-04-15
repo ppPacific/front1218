@@ -7,7 +7,7 @@ import {ThemeProvider} from "@/components/ThemeProvider";
 import LightRays from "@/components/LightRays";
 import NavBar from "@/components/NavBar";
 import {WishlistProvider} from "@/providers/WishlistProvider";
-
+import { Toaster } from "@/components/ui/sonner"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -87,6 +87,7 @@ export default async function RootLayout({
 
 
           </ThemeProvider>
+          <Toaster />
           </body>
         </html>
       </ClerkProvider>
