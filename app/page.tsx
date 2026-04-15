@@ -1,7 +1,8 @@
 import {useTranslations} from "next-intl";
 import EventCard from "@/components/EventCard";
-import {events} from "@/lib/constants";
+import {dogs, events} from "@/lib/constants";
 import SearchBar from "@/components/SearchBar";
+import DogCard from "@/components/DogCard";
 
 
 const Home = async () => {
@@ -14,7 +15,7 @@ const Home = async () => {
     //  const response = await fetch('https://localhost:3000/api/books');
     // const books = await response.json();
     //console.log(posts);
-    console.log('page component? from server');
+    //console.log('page component? from server');
     return (
         <section>
             <h1 className={"text-center text-gradient font-semibold home-title"}>
@@ -30,6 +31,13 @@ const Home = async () => {
                             </li>
                         ))}
                     </ul>
+                    <div className="grid gap-6 md:grid-cols-2">
+                        {dogs.map((dog) => (
+                            <DogCard key={dog.id} {...dog} />
+                        ))}
+                    </div>
+
+
                 </div>
             {/*</div>*/}
 

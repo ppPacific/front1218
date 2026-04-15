@@ -14,6 +14,7 @@ export function useWishlist() {
         try {
             const raw = window.localStorage.getItem(STORAGE_KEY);
             if (raw) {
+                console.log(`hook first render already hv key`)
                 setWishlist(JSON.parse(raw));
             }
         } catch (error) {
@@ -25,6 +26,7 @@ export function useWishlist() {
         if (!mounted) return;
 
         try {
+            console.log(`hook mounted set wish to storage ${wishlist}`)
             window.localStorage.setItem(STORAGE_KEY, JSON.stringify(wishlist));
         } catch (error) {
             console.error("Failed to save wishlist", error);

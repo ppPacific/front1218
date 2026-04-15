@@ -9,11 +9,84 @@ export type EventItem = {
 
 export const events: EventItem[] = [
     {image:'/images/img_adoptbanner.jpg',title:'Adopt 1',slug:'event-dog-1',location:'event-dog-1',date:'Date-1',time:'Time-1'},
-    {image:'/images/img_octdog.jpg',title:'Adopt 2',slug:'event-dog-2',location:'event-dog-1',date:'Date-1',time:'Time-1'},
+    // {image:'/images/img_octdog.jpg',title:'Adopt 2',slug:'event-dog-2',location:'event-dog-1',date:'Date-1',time:'Time-1'},
     // {image:'/images/img_octdog.jpg',title:'Adopt 3',slug:'event-dog-3',location:'event-dog-1',date:'Date-1',time:'Time-1'},
 ]
 
-
+export const dogs = [
+    {
+        id: "1",
+        slug: "milo",
+        name: "Milo",
+        summary: "Playful and affectionate. Loves long walks and human company.",
+        featureTag: "Featured",
+        imageUrl: "/images/dog-albert-1.jpeg",
+    },
+    {
+        id: "2",
+        slug: "bella",
+        name: "Bella",
+        summary: "Gentle and calm, perfect for a quieter home and relaxed routine.",
+        featureTag: "New",
+        imageUrl: "/images/dog-albert-1.jpeg",
+    },
+    {
+        id: "3",
+        slug: "rocky",
+        name: "Rocky",
+        summary: "Energetic and smart. Great for active adopters who enjoy outdoor time.",
+        featureTag: "Urgent",
+        imageUrl: "/images/dog-jimmy-1.jpeg",
+    },
+    {
+        id: "4",
+        slug: "luna",
+        name: "Luna",
+        summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
+        featureTag: "Puppy",
+        imageUrl: "/images/dog-albert-1.jpeg",
+    },
+    {
+        id: "5",
+        slug: "joffery",
+        name: "Joffery",
+        summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
+        featureTag: "Puppy",
+        imageUrl: "/images/dog-odette-1.jpeg",
+    },
+    {
+        id: "6",
+        slug: "ken",
+        name: "Ken",
+        summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
+        featureTag: "Puppy",
+        imageUrl: "/images/dog-albert-1.jpeg",
+    },
+    {
+        id: "7",
+        slug: "cora",
+        name: "Cora",
+        summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
+        featureTag: "Puppy",
+        imageUrl: "/images/dog-albert-1.jpeg",
+    },
+    {
+        id: "8",
+        slug: "josie",
+        name: "Josie",
+        summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
+        featureTag: "Puppy",
+        imageUrl: "/images/dog-albert-1.jpeg",
+    },
+    {
+        id: "9",
+        slug: "emma",
+        name: "Emma",
+        summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
+        featureTag: "Puppy",
+        imageUrl: "/images/dog-odette-1.jpeg",
+    },
+];
 export const advancedOperationsMetrics = {
     Occupancy_Rate: 98,
     Intake_Number: 8,
