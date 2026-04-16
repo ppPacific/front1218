@@ -11,8 +11,9 @@ interface Props {
     slug: string;
     name: string;
     summary: string;
-    featureTag?: string;
+    featureTag?: string[];
     imageUrl: string;
+    breed: string;
 }
 const DogCard = ({id,slug,name,summary,featureTag,imageUrl}:Props) => {
     const { isBookmarked, toggleBookmark, mounted } = useWishlistContext();
@@ -76,10 +77,10 @@ const DogCard = ({id,slug,name,summary,featureTag,imageUrl}:Props) => {
                         </div>
                     </div>
 
-                    {featureTag && (
+                    {featureTag && featureTag.length > 0 && (
                         <div className="absolute right-3 top-3 z-10">
                           <span className="inline-flex rounded-full bg-gray-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-teal-500 shadow-lg">
-                            {featureTag}
+                            {featureTag[0]}
                           </span>
                         </div>
                     )}

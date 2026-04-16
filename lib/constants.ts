@@ -19,72 +19,81 @@ export const dogs = [
         slug: "milo",
         name: "Milo",
         summary: "Playful and affectionate. Loves long walks and human company.",
-        featureTag: "Featured",
+        featureTag: ["Featured","Good with kids"],
         imageUrl: "/images/dog-milo-1.jpeg",
+        breed: "mongrel"
     },
     {
         id: "2",
         slug: "cloe",
         name: "Cloe",
         summary: "Gentle and calm, perfect for a quieter home and relaxed routine.",
-        featureTag: "New",
+        featureTag: ["New","Friendly"],
         imageUrl: "/images/dog-cloe-1.jpeg",
+        breed: "mongrel"
     },
     {
         id: "3",
         slug: "rocky",
         name: "Rocky",
         summary: "Energetic and smart. Great for active adopters who enjoy outdoor time.",
-        featureTag: "Urgent",
+        featureTag: ["Urgent"],
         imageUrl: "/images/dog-rocky-1.jpeg",
+        breed: "mongrel"
     },
     {
         id: "4",
         slug: "jasmine",
         name: "Jasmine",
         summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
-        featureTag: "Puppy",
+        featureTag: ["Puppy","Good with kids"],
         imageUrl: "/images/dog-jasmine-1.jpeg",
+        breed: "mongrel"
     },
     {
         id: "5",
         slug: "joffery",
         name: "Joffery",
         summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
-        featureTag: "Puppy",
+        featureTag: ["Puppy","Calm"],
         imageUrl: "/images/dog-joffery-1.jpeg",
+        breed: "mongrel"
     },
     {
         id: "6",
         slug: "margo",
         name: "Margo",
         summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
-        featureTag: "Puppy",
+        featureTag: ["Puppy","Good with kids"],
         imageUrl: "/images/dog-margo-1.jpeg",
+        breed: "mongrel"
     },
     {
         id: "7",
         slug: "maria",
         name: "Maria",
         summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
-        featureTag: "Puppy",
+        featureTag: ["Puppy"],
         imageUrl: "/images/dog-maria-1.jpeg",
+        breed: "mongrel"
     },
     {
         id: "8",
         slug: "mia",
         name: "Mia",
         summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
-        featureTag: "Puppy",
+        featureTag: ["Puppy"],
         imageUrl: "/images/dog-mia-1.jpeg",
+        breed: "mongrel"
     },
     {
         id: "9",
         slug: "mercury",
         name: "Mercury",
         summary: "Sweet-natured and friendly, with a curious personality and bright spirit.",
-        featureTag: "Puppy",
+        featureTag: ["Puppy"],
         imageUrl: "/images/dog-mercury-1.jpeg",
+        breed: "mongrel"
     },
 ];
 export const advancedOperationsMetrics = {

@@ -8,6 +8,7 @@ import LightRays from "@/components/LightRays";
 import NavBar from "@/components/NavBar";
 import {WishlistProvider} from "@/providers/WishlistProvider";
 import { Toaster } from "@/components/ui/sonner"
+import Link from "next/link";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -48,7 +49,10 @@ export default async function RootLayout({
                           <div className={`max-w-7xl mx-auto px-4 flex justify-between`}>
                               <div className={`flex items-center justify-between h-16`}>
                                   <div className="flex items-center">
-                                      Rescued
+                                      <Link href={`/`}>
+                                          Rescued
+                                      </Link>
+
                                   </div>
                               </div>
                               <NavBar />
