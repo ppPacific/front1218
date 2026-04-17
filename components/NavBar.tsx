@@ -1,13 +1,15 @@
 "use client"
-import React from 'react'
+import React, {useState} from 'react'
 import {Button} from "@/components/ui/button";
 import {ModeToggle} from "@/components/ModeToggle";
 import {FolderLike} from "@/components/FolderLike";
 import {SignedIn, SignedOut, SignInButton, SignUpButton, UserButton} from "@clerk/nextjs";
 import {currentUser} from "@clerk/nextjs/server";
 import { Search } from 'lucide-react';
+import DogSearchModal from "@/components/DogSearchModal";
 const NavBar = () => {
     // const user = await currentUser()
+    const [open, setOpen] = useState(false);
     return (
         <div className={`flex items-center justify-end gap-x-2`}>
             <SignedOut>
@@ -27,9 +29,16 @@ const NavBar = () => {
             <SignedIn>
                 <UserButton />
             </SignedIn>
-            <Search />
+            <Button
+                variant={"outline"}
+                aria-label={"Open Search"}
+                onClick={() => setOpen(true)}>
+                <Search />
+            </Button>
+
             <ModeToggle />
             <FolderLike />
+            <DogSearchModal open={open} onClose={()=>setOpen(false)}/>
         </div>
     )
 }

@@ -191,6 +191,11 @@
   }
 }
 
+.modal__search_wrap {
+  margin: 0 auto 4.8rem;
+  position: relative;
+  width: 80%;
+}
 /*@utility text-gradient {*/
 /*  @apply to-blue bg-gradient-to-b from-white via-white bg-clip-text font-semibold text-transparent;*/
 /*}*/

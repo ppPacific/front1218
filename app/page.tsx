@@ -29,7 +29,7 @@ const Home =  () => {
             {/*<div className={`min-h-screen`}>*/}
             <div className="relative aspect-[4/5] md:aspect-auto md:h-1/2">
                 <Image
-                    src={"/images/logo_bringlovehome.png"}
+                    src={"/images/logo_bringlovehome_b.png"}
                     alt={"Bring Love Home"}
                     fill
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
