@@ -191,6 +191,47 @@
   }
 }
 
+.modal__search-wrap {
+  @apply mx-16 relative w-[80%] flex justify-center
+
+}
+.modal__search {
+  @apply flex flex-row w-[80%] justify-center align-middle
+}
+.modal__input-wrap {
+  @apply flex flex-1
+}
+.modal__input{
+  @apply outline-none;
+
+  border: none;
+  border-bottom: .01rem solid #000;
+  /*font-family: Brilliant Cut Pro Regular, sans-serif;*/
+  font-size: 1rem;
+  font-weight: 300;
+  padding: .5rem 0;
+  width: 100%;
+}
+.modal__button{
+  @apply rounded-none;
+
+  background: #000;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  /*font-family: Brilliant Cut Pro Regular, sans-serif;*/
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: .2rem;
+  padding: 0 3.2rem;
+  text-transform: uppercase;
+}
+.modal__suggestion-block {
+  @apply mt-3 flex gap-x-2 flex justify-center overflow-x-auto
+}
+.suggestion-button{
+  @apply text-black rounded-none border-1 uppercase bg-white cursor-pointer px-4 py-4
+}
 /*@utility text-gradient {*/
 /*  @apply to-blue bg-gradient-to-b from-white via-white bg-clip-text font-semibold text-transparent;*/
 /*}*/

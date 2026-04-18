@@ -9,6 +9,7 @@ import NavBar from "@/components/NavBar";
 import {WishlistProvider} from "@/providers/WishlistProvider";
 import { Toaster } from "@/components/ui/sonner"
 import Link from "next/link";
+import DogSearchModal from "@/components/DogSearchModal";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -87,9 +88,6 @@ export default async function RootLayout({
                       </main>
                   </div>
               </WishlistProvider>
-
-
-
           </ThemeProvider>
           <Toaster />
           </body>

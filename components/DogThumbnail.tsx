@@ -14,7 +14,7 @@ interface Props {
     imageUrl: string;
     breed: string;
 }
-const DogCard = ({id,slug,name,summary,featureTag,imageUrl}:Props) => {
+const DogThumbnail = ({id,slug,name,summary,featureTag,imageUrl}:Props) => {
     const { isBookmarked, toggleBookmark, mounted } = useWishlistContext();
     const bookmarked = mounted ? isBookmarked(id) : false;
     return (
@@ -90,4 +90,4 @@ const DogCard = ({id,slug,name,summary,featureTag,imageUrl}:Props) => {
     )
 
 }
-export default DogCard
+export default DogThumbnail
