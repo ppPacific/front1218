@@ -1,14 +1,49 @@
 "use client"
 import { X } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Button} from "@/components/ui/button";
+import {useRouter} from "next/navigation";
 
 type DogSearchModalProps = {
     open: boolean;
     onClose: () => void;
 };
 const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
+    const [keyword, setKeyword] = useState("");
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!open) return;
+
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+        };
+
+        document.body.style.overflow = "hidden";
+        window.addEventListener("keydown", onKeyDown);
+
+        return () => {
+            document.body.style.overflow = "";
+            window.removeEventListener("keydown", onKeyDown);
+        };
+    }, [open, onClose]);
+
+    const normalizedKeyword = useMemo(() => keyword.trim(), [keyword]);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!normalizedKeyword) return;
+
+        router.push(`/search-result?q=${encodeURIComponent(normalizedKeyword)}`);
+        onClose();
+    };
+
+    const handleTagClick = (tag: string) => {
+        router.push(`/search-result?tag=${encodeURIComponent(tag)}`);
+        onClose();
+    };
+
     if (!open) return null;
     return (
         <div className={"px-4 min-h-[calc(100dvh-12rem)] max-h-[calc(100dvh-4rem)] backdrop-blur-sm inset-0 text-black fixed top-0 left-0 w-full flex flex-col z-60 overflow-y-auto bg-white"}>
@@ -34,13 +69,28 @@ const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
                 <div className={"modal__search-wrap"}>
                     <div className={"modal__search"}>
                         <div className={"modal__input-wrap"}>
-                            <input className={"modal__input"} placeholder={"search doggies..."} value={""} type={"text"} onChange={()=>{}}/>
+                            <form className={"modal__input-wrap"} onSubmit={handleSubmit}>
+                                <input
+                                    className={"modal__input"}
+                                    placeholder={"search doggies..."}
+                                    value={keyword}
+                                    type={"text"}
+                                    onChange={(e) => setKeyword(e.target.value)}
+                                />
+                                <Button className={"modal__button"}>search</Button>
+                            </form>
                         </div>
-                        <Button className={"modal__button"}>SEARCH</Button>
+
                         </div>
 
                 </div>
-                <div className={"suggestion_block"}>category</div>
+                <div className={"modal__suggestion-block"}>
+                    <Button className={"suggestion-button"}>puppy</Button>
+                    <Button className={"suggestion-button"}>senior dog</Button>
+                    <Button className={"suggestion-button"}>featured</Button>
+                    <Button className={"suggestion-button"}>calm</Button>
+
+                </div>
         </div>
     )
 }
