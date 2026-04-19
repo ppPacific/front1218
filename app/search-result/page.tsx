@@ -17,7 +17,8 @@ export default async function SearchResultPage({
         return matchesName && matchesTag;
     });
     return (
-        <div className={"px-4"}>
+        <div className={"px-4 flex flex-col"}>
+
             <h1>Result</h1>
 
             {q && (

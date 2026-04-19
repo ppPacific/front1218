@@ -1,6 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import connectDB from "@/lib/mongodb";
-
+import Dog from '@/database/dog.model';
 
 export async function POST(req:NextRequest) {
     try {
@@ -11,8 +11,16 @@ export async function POST(req:NextRequest) {
         return NextResponse.json({message: "Dog record creation failed." , error: e instanceof Error ? e.message : 'Unknown'})
     }
 
-    return Response.json(books);
+    return NextResponse.json(books);
 }
 export async function GET() {
-    return Response.json(books);
+    try {
+        await connectDB();
+
+        const dogs = await Dog.find().sort({ createdAt: -1 });
+
+        return NextResponse.json({ message: 'Dogs fetched successfully', dogs }, { status: 200 });
+    } catch (e) {
+        return NextResponse.json({ message: 'Dog fetching failed', error: e }, { status: 500 });
+    }
 }
