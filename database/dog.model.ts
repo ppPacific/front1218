@@ -15,6 +15,7 @@ export interface IDog extends Document {
     featureTag: string[];
     status:string;
     kennelLocation:string;
+    isPublished:boolean;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -27,9 +28,9 @@ const DogSchema = new Schema<IDog>(
     {
         name: {
             type: String,
-            required: [true, 'name is required'],
+            required: [true, 'Name is required'],
             trim: true,
-            maxlength: [100, 'name cannot exceed 100 characters'],
+            maxlength: [100, 'Name cannot exceed 100 characters'],
         },
         slug: {
             type: String,
@@ -66,6 +67,10 @@ const DogSchema = new Schema<IDog>(
             required: [true, 'Sex is required'],
             trim: true,
         },
+        isPublished: {
+            type: Boolean,
+            required: [true, 'This value is required']
+        },
         kennelLocation: {
             type: String,
             required: [true, 'kennelLocation is required'],
@@ -76,7 +81,6 @@ const DogSchema = new Schema<IDog>(
             required: [true, 'Status is required'],
             trim: true,
         },
-
         featureTag: {
             type: [String],
             required: [true, 'featureTag are required'],

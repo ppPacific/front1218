@@ -6,6 +6,7 @@ import Image from "next/image";
 import React from "react";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
+import {IEvent} from "@/database";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const Home =  async () => {
@@ -46,10 +47,10 @@ const Home =  async () => {
                 />
             </div>
 
-            <div className="mt-10 space-y-7">
+            <div className="mt-[-10] space-y-7">
                     <h3>Featured Events</h3>
                     <ul className="events">
-                        {events && events.length > 0 && events.slice(0,1).map((event: IEvent) => (
+                        {events && events.length > 0 && events.map((event: IEvent) => (
                             <li key={event.title} className="list-none">
                                 <EventCard {...event} />
                             </li>
