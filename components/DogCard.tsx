@@ -9,12 +9,12 @@ interface Props {
     id: string;
     slug: string;
     name: string;
-    summary: string;
+    description: string;
     featureTag?: string[];
-    imageUrl: string;
+    image: string;
     breed: string;
 }
-const DogCard = ({id,slug,name,summary,featureTag,imageUrl}:Props) => {
+const DogCard = ({id,slug,name,description,featureTag,image}:Props) => {
     const { isBookmarked, toggleBookmark, mounted } = useWishlistContext();
     const bookmarked = mounted ? isBookmarked(id) : false;
     return (
@@ -43,14 +43,15 @@ const DogCard = ({id,slug,name,summary,featureTag,imageUrl}:Props) => {
             <Link href={`/dogs/${slug}`} className="block">
                 <div className="relative md:grid md:grid-cols-[7fr_3fr] md:min-h-[280px]">
                     <div className="relative aspect-[4/5] md:aspect-auto md:h-full">
+                        {image && image.length > 0 && (
                         <Image
-                            src={imageUrl}
+                            src={image[0].url as string}
                             alt={name}
                             fill
                             className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                             sizes="(max-width: 767px) 100vw, (max-width: 1279px) 70vw, 50vw"
                         />
-
+                            )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100" />
 
                         <div className="absolute inset-x-0 bottom-0 flex justify-end p-4 md:hidden">
@@ -68,7 +69,7 @@ const DogCard = ({id,slug,name,summary,featureTag,imageUrl}:Props) => {
                                 {name}
                             </h3>
                             <p className="line-clamp-4 text-sm leading-6 text-zinc-600">
-                                {summary}
+                                {description}
                             </p>
                             <span className="inline-flex w-fit rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700">
                                 View profile
