@@ -5,6 +5,7 @@ import {IEvent} from "@/database";
 import Image from "next/image";
 import EventCard from "@/components/EventCard";
 import {cacheLife} from "next/cache";
+import BookEvent from "@/components/BookEvent";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -120,7 +121,7 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
                             <p className="text-sm">Be the first to book your spot!</p>
                         )}
 
-                        {/*<BookEvent eventId={event._id} slug={event.slug} />*/}
+                        <BookEvent eventId={event._id} slug={event.slug} />
                     </div>
                 </aside>
             </div>

@@ -7,9 +7,31 @@ import {SignedIn, SignedOut, SignInButton, SignUpButton, UserButton} from "@cler
 import {currentUser} from "@clerk/nextjs/server";
 import { Search } from 'lucide-react';
 import DogSearchModal from "@/components/DogSearchModal";
+import {usePathname, useRouter} from "next/navigation";
 const NavBar = () => {
     // const user = await currentUser()
     const [open, setOpen] = useState(false);
+    const pathname = usePathname();
+    const router = useRouter();
+
+    const handleSearchClick = () => {
+        if (pathname && pathname.includes("/search-result")) {
+            const existingSearchInput = document.getElementById("dogs-search-input");
+            if (existingSearchInput) {
+                //existingSearchInput.focus();
+                existingSearchInput.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+            } else {
+                router.push("/search-result");
+            }
+            return;
+        }
+
+        setOpen(true);
+    };
+    console.log(open)
     return (
         <div className={`flex items-center justify-end gap-x-2`}>
             <SignedOut>
@@ -32,13 +54,19 @@ const NavBar = () => {
             <Button
                 variant={"outline"}
                 aria-label={"Open Search"}
-                onClick={() => setOpen(true)}>
+                onClick={() => {
+                    setOpen(true);
+                    handleSearchClick
+                }}>
                 <Search />
             </Button>
 
             <ModeToggle />
             <FolderLike />
-            <DogSearchModal open={open} onClose={()=>setOpen(false)}/>
+            {
+                open && <DogSearchModal open={open} onClose={()=>setOpen(false)}/>
+
+            }
         </div>
     )
 }

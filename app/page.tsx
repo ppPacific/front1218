@@ -10,8 +10,7 @@ import {IEvent} from "@/database";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const Home =  async () => {
-    // const [visibleCount, setVisibleCount] = useState(4);
-    // const t = useTranslations('home')
+
     //server-side fetch
     // const fetchSample = await fetch('https://jsonplaceholder.typicode.com/posts');
     // if (!fetchSample.ok) throw new Error("fetched API fail")

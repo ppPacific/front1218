@@ -66,11 +66,12 @@ const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
                     />
                 </div>
 
-                <div className={"modal__search-wrap"}>
+                <div className={"modal__search-wrap"} >
                     <div className={"modal__search"}>
                         <div className={"modal__input-wrap"}>
                             <form className={"modal__input-wrap"} onSubmit={handleSubmit}>
                                 <input
+                                    id={"dogs-search-input"}
                                     className={"modal__input"}
                                     placeholder={"search doggies..."}
                                     value={keyword}
