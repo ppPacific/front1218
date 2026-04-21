@@ -1,4 +1,6 @@
 import {dogs} from "@/lib/constants";
+import {Button} from "@/components/ui/button";
+import React from "react";
 
 export default async function SearchResultPage({
                                                    searchParams,
@@ -17,8 +19,27 @@ export default async function SearchResultPage({
         return matchesName && matchesTag;
     });
     return (
-        <div className={"px-4"}>
+        <div className={"px-4 flex flex-col"}>
+
             <h1>Result</h1>
+            {/*<div className={"modal__search-wrap"}>*/}
+            {/*    <div className={"modal__search"}>*/}
+            {/*        <div className={"modal__input-wrap"}>*/}
+            {/*            <form className={"modal__input-wrap"} onSubmit={handleSubmit}>*/}
+            {/*                <input*/}
+            {/*                    className={"modal__input"}*/}
+            {/*                    placeholder={"search doggies..."}*/}
+            {/*                    value={keyword}*/}
+            {/*                    type={"text"}*/}
+            {/*                    onChange={(e) => setKeyword(e.target.value)}*/}
+            {/*                />*/}
+            {/*                <Button className={"modal__button"}>search</Button>*/}
+            {/*            </form>*/}
+            {/*        </div>*/}
+
+            {/*    </div>*/}
+
+            {/*</div>*/}
 
             {q && (
                 <p className="mt-2 text-zinc-600">
