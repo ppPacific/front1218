@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
         });
 
         event.image = (uploadResult as { secure_url: string }).secure_url;
-
+        //TODO: modify create event payload
         const createdEvent = await Event.create(event);
 
         return NextResponse.json({ message: 'Event created successfully', event: createdEvent }, { status: 201 });
@@ -59,14 +59,4 @@ export async function GET() {
     }
 }
 
-export async function GETBY(slug:string) {
-    try {
-        await connectDB();
 
-        const events = await Event.findById(slug).sort({ createdAt: -1 });
-
-        return NextResponse.json({ message: 'Event fetched successfully', events }, { status: 200 });
-    } catch (e) {
-        return NextResponse.json({ message: 'Event fetching failed', error: e }, { status: 500 });
-    }
-}

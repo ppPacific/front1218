@@ -81,7 +81,7 @@ const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
                             </form>
                         </div>
 
-                        </div>
+                    </div>
 
                 </div>
                 <div className={"modal__suggestion-block"}>

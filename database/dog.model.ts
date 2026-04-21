@@ -56,7 +56,13 @@ const DogSchema = new Schema<IDog>(
             trim: true,
             maxlength: [500, 'Size cannot exceed 500 characters'],
         },
-        image: [dogImageSchema],
+        image: {
+            type: [dogImageSchema],
+            validate: {
+                validator: (v: {}[]) => v && v.length > 0,
+                message: 'At least one image is required',
+            },
+        },
         breed: {
             type: String,
             required: [true, 'Breed is required'],
