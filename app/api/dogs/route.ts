@@ -24,7 +24,6 @@ export async function POST(req:NextRequest) {
         return NextResponse.json({message: "Dog record creation failed." , error: e instanceof Error ? e.message : 'Unknown'})
     }
 
-    return NextResponse.json(books);
 }
 export async function GET() {
     try {

@@ -243,6 +243,7 @@
         @apply flex w-full flex-col gap-6 rounded-[10px] border px-5 py-6;
       }
     }
+
   }
 
   h2 {
@@ -260,6 +261,9 @@
   .flex-row-gap-2 {
     @apply flex flex-row gap-2;
   }
+}
+.pill {
+  @apply bg-dark-100 text-light-100 text-xs rounded-[6px] px-5 py-2;
 }
 
 .modal__search-wrap {

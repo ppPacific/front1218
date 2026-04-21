@@ -7,34 +7,23 @@ import React from "react";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import {IEvent} from "@/database";
+import {cacheLife} from "next/cache";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const Home =  async () => {
-
+    'use cache'
+    cacheLife('hours')
     //server-side fetch
     // const fetchSample = await fetch('https://jsonplaceholder.typicode.com/posts');
     // if (!fetchSample.ok) throw new Error("fetched API fail")
     const response = await fetch(`${BASE_URL}/api/events`);
     const {events} = await response.json();
-    // const posts = await fetchSample.json();
-    //  const response = await fetch('https://localhost:3000/api/books');
-    // const books = await response.json();
-    //console.log(posts);
-    //console.log('page component? from server');
+    const dogsresponse = await fetch(`${BASE_URL}/api/dogs`);
+    const {dogs} = await dogsresponse.json();
+
     return (
         <section>
-            {/*<h1 className={"text-center text-gradient font-semibold home-title"}>*/}
-            {/*    Adopt a dog<br/>Adoption saves lives.</h1>*/}
-            {/*<div className={`min-h-screen`}>*/}
-            {/*<div className="relative aspect-[4/5] md:aspect-auto md:h-1/2">*/}
-            {/*    <Image*/}
-            {/*        src={"/images/logo_bringlovehome_b.png"}*/}
-            {/*        alt={"Bring Love Home"}*/}
-            {/*        fill*/}
-            {/*        className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"*/}
-            {/*        sizes="(max-width: 767px) 50vw, (max-width: 1279px) 70vw, 50vw"*/}
-            {/*    />*/}
-            {/*</div>*/}
+
             <div className="mt-[-70]">
                 <Image
                     src={"/images/logo_bringlovehome_b.png"}
@@ -66,14 +55,12 @@ const Home =  async () => {
                     </div>
                     <div className="grid gap-6 md:grid-cols-2">
                         {dogs.slice(0,6).map((dog) => (
-                            <DogCard key={dog.id} {...dog} />
+                            <DogCard key={dog._id} {...dog} />
                         ))}
                     </div>
 
 
                 </div>
-            {/*</div>*/}
-
 
         </section>
         // <div className={"grid grid-cols-1 sm:grid-cols-2 md:grid-cols"}>

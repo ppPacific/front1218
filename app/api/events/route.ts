@@ -37,8 +37,11 @@ export async function POST(req: NextRequest) {
         });
 
         event.image = (uploadResult as { secure_url: string }).secure_url;
-        //TODO: modify create event payload
-        const createdEvent = await Event.create(event);
+
+        const createdEvent = await Event.create({
+            ...event,
+        tags,
+        agenda});
 
         return NextResponse.json({ message: 'Event created successfully', event: createdEvent }, { status: 201 });
     } catch (e) {
