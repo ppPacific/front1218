@@ -37,8 +37,8 @@ const EventTags = ({ tags }: { tags: string[] }) => (
 )
 
 const EventDetails = async ({ params }: { params: Promise<string> }) => {
-    // 'use cache'
-    // cacheLife('hours');
+    'use cache'
+    cacheLife('hours');
     const slug = await params;
 
     let event;
@@ -71,8 +71,8 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
 
     const bookings = 10;
 
-    const similarEvents: IEvent[] = await getSimilarEventsBySlug(slug);
-
+    const similarEvents: IEvent[] = (await getSimilarEventsBySlug(slug));
+    // console.log(`similar event`+similarEvents)
     return (
         <section id="event">
             <div className="header">

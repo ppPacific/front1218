@@ -11,6 +11,7 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {getSimilarDogsBySlug} from "@/lib/actions/dog.actions";
 import {IDog} from "@/database/dog.model";
+import DogThumbnail from "@/components/DogThumbnail";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -175,7 +176,7 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
                             <Skeleton className="h-4 w-3/4" />
                         </div>}
                         {similarDogs.length > 0 && similarDogs.map((similarDog: IDog) => (
-                            <EventCard key={similarDog.name} {...similarDog} />
+                            <DogThumbnail key={similarDog.name} {...similarDog} />
                         ))}
                     </div>
                 </div>

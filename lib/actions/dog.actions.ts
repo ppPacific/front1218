@@ -8,7 +8,7 @@ export const getSimilarDogsBySlug = async (slug: string) => {
         await connectDB();
         const dog = await Dog.findOne({ slug });
 
-        return await Dog.find({ _id: { $ne: dog._id }, tags: { $in: dog.featureTag } }).lean();
+        return (await Dog.find({ _id: { $ne: dog._id }, featureTag: { $in: dog.featureTag } })).lean();
     } catch {
         return [];
     }

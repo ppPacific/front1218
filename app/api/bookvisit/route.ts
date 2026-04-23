@@ -14,12 +14,7 @@ export async function POST(req:NextRequest) {
         } catch (e) {
             return NextResponse.json({ message: 'Invalid JSON data format'}, { status: 400 })
         }
-
-        let featureTag = JSON.parse(formData.get('featureTag') as string);
-
-        const createdDog = await Dog.create({
-            ...dog,
-        featureTag:featureTag});
+        const createdDog = await Dog.create(dog);
 
         return NextResponse.json({ message: 'Dog created successfully', dog: createdDog }, { status: 201 });
 
