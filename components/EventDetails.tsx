@@ -6,6 +6,7 @@ import Image from "next/image";
 import EventCard from "@/components/EventCard";
 import {cacheLife} from "next/cache";
 import BookEvent from "@/components/BookEvent";
+import {Skeleton} from "@/components/ui/skeleton";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -129,6 +130,11 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
             <div className="flex w-full flex-col gap-4 pt-20">
                 <h2>Similar Events</h2>
                 <div className="events">
+                    {similarEvents.length == 0 && <div className="flex w-full max-w-xs flex-col gap-2">
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-3/4" />
+                    </div>}
                     {similarEvents.length > 0 && similarEvents.map((similarEvent: IEvent) => (
                         <EventCard key={similarEvent.title} {...similarEvent} />
                     ))}

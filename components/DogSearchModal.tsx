@@ -49,7 +49,7 @@ const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
         <div className={"px-4 min-h-[calc(100dvh-12rem)] max-h-[calc(100dvh-4rem)] backdrop-blur-sm inset-0 text-black fixed top-0 left-0 w-full flex flex-col z-60 overflow-y-auto bg-white"}>
             <div className={"relative"}>
                 <div
-                    className={'absolute right-[8%] mt-10 cursor-pointer'}>
+                    className={'absolute right-[5%] mt-10 cursor-pointer'}>
                     <span onClick={onClose}>
                         <X className={"h-4 w-4 font-semibold"}/>
                     </span>
@@ -86,7 +86,9 @@ const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
 
                 </div>
                 <div className={"modal__suggestion-block"}>
-                    <Button className={"suggestion-button"}>puppy</Button>
+
+                    <Button className={"suggestion-button"}>
+                        puppy</Button>
                     <Button className={"suggestion-button"}>senior dog</Button>
                     <Button className={"suggestion-button"}>featured</Button>
                     <Button className={"suggestion-button"}>calm</Button>

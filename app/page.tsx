@@ -1,6 +1,3 @@
-import {useTranslations} from "next-intl";
-import EventCard from "@/components/EventCard";
-import {dogs, events} from "@/lib/constants";
 import DogCard from "@/components/DogCard";
 import Image from "next/image";
 import React from "react";
@@ -8,7 +5,13 @@ import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import {IEvent} from "@/database";
 import {cacheLife} from "next/cache";
-
+import EventSlider from "@/components/EventSlider";
+import {Swiper} from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import EventCard from "@/components/EventCard";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const Home =  async () => {
     'use cache'
@@ -23,7 +26,6 @@ const Home =  async () => {
 
     return (
         <section>
-
             <div className="mt-[-70]">
                 <Image
                     src={"/images/logo_bringlovehome_b.png"}
@@ -36,9 +38,10 @@ const Home =  async () => {
             </div>
 
             <div className="mt-[-10] space-y-7">
-                    <h3>Featured Events</h3>
+                    <h2>Featured Events</h2>
                     <ul className="events">
-                        {events && events.length > 0 && events.map((event: IEvent) => (
+
+                        {events && events.length > 0 && events.slice(0,1).map((event: IEvent) => (
                             <li key={event.title} className="list-none">
                                 <EventCard {...event} />
                             </li>

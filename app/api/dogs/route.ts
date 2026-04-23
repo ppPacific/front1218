@@ -1,7 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import connectDB from "@/lib/mongodb";
 import Dog from '@/database/dog.model';
-import Event from "../../../database/event.model";
 
 export async function POST(req:NextRequest) {
     try {

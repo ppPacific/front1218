@@ -37,7 +37,7 @@ export const dogs = [
         slug: "rocky",
         name: "Rocky",
         summary: "Energetic and smart. Great for active adopters who enjoy outdoor time.",
-        featureTag: ["Urgent"],
+        featureTag: ["Urgent","New","Energetic"],
         imageUrl: "/images/dog-rocky-1.jpeg",
         breed: "mongrel"
     },

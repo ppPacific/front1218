@@ -44,13 +44,7 @@ const Page = () => {
     return (
         <div>
             <h2>Dashboard Page</h2>
-            {/*<ul className="events">*/}
-            {/*    {events && events.length > 0 && events.map((event: IEvent) => (*/}
-            {/*        <li key={event.title} className="list-none">*/}
-            {/*            <MetricBox {...event} />*/}
-            {/*        </li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
+
             <Tabs defaultValue="overview" className="min-w-[400px]">
                 <TabsList>
                     <TabsTrigger value="overview">Basic metrics</TabsTrigger>

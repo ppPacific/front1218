@@ -6,7 +6,7 @@ export interface IDog extends Document {
     description: string;
     age: string;
     size: string;
-    image: {
+    image?: {
         url: string;
         altText?: string | null;
     }[];
@@ -58,10 +58,7 @@ const DogSchema = new Schema<IDog>(
         },
         image: {
             type: [dogImageSchema],
-            validate: {
-                validator: (v: {}[]) => v && v.length > 0,
-                message: 'At least one image is required',
-            },
+
         },
         breed: {
             type: String,

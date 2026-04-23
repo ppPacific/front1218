@@ -31,7 +31,7 @@ const NavBar = () => {
 
         setOpen(true);
     };
-    console.log(open)
+    //console.log(open)
     return (
         <div className={`flex items-center justify-end gap-x-2`}>
             <SignedOut>
@@ -61,7 +61,7 @@ const NavBar = () => {
                 <Search />
             </Button>
 
-            <ModeToggle />
+            {/*<ModeToggle />*/}
             <FolderLike />
             {
                 open && <DogSearchModal open={open} onClose={()=>setOpen(false)}/>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {Geist, Geist_Mono, Josefin_Sans} from "next/font/google";
 import "./globals.css";
 
 import {ClerkProvider, SignedIn, SignedOut, SignInButton, SignUpButton, UserButton} from "@clerk/nextjs";
@@ -21,7 +21,10 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
+const josefin = Josefin_Sans({
+    subsets: ['latin'],
+    variable: '--font-josefin',
+})
 export const metadata: Metadata = {
   title: "bubbletea.com",
   description: "Adoptions save lives",
@@ -38,7 +41,7 @@ export default async function RootLayout({
       <PostHogProvider>
 
         <ClerkProvider>
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" className={josefin.className} suppressHydrationWarning>
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
@@ -55,7 +58,7 @@ export default async function RootLayout({
                                   <div className={`flex items-center justify-between h-16`}>
                                       <div className="flex items-center">
                                           <Link href={`/`}>
-                                              Rescued
+                                              Dog Rescue - Bring Love Home
                                           </Link>
 
                                       </div>

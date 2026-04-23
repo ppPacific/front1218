@@ -11,8 +11,8 @@ type RouteParams = {
 };
 
 /**
- * GET /api/events/[slug]
- * Fetches a single events by its slug
+ * GET /api/dogs/[slug]
+ * Fetches a single dog by its slug
  */
 export async function GET(
     req: NextRequest,

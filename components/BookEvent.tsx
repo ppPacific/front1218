@@ -3,6 +3,7 @@
 import {useState} from "react";
 import {createBooking} from "@/lib/actions/booking.actions";
 import posthog from "posthog-js";
+import {  SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
 
 const BookEvent = ({ eventId, slug }: { eventId: string, slug: string;}) => {
     const [email, setEmail] = useState('');
@@ -38,8 +39,12 @@ const BookEvent = ({ eventId, slug }: { eventId: string, slug: string;}) => {
                             placeholder="Enter your email address"
                         />
                     </div>
-
-                    <button type="submit" className="button-submit">Submit</button>
+                    <SignedOut>
+                        <p className={"text-md"}>Sign in first to book your spot!</p>
+                    </SignedOut>
+                    <SignedIn>
+                        <button type="submit" className="button-submit">Submit</button>
+                    </SignedIn>
                 </form>
             )}
         </div>
