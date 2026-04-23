@@ -1,9 +1,6 @@
 import React, {Suspense} from 'react'
 import {notFound} from "next/navigation";
-import {IEvent} from "@/database";
-import {getSimilarEventsBySlug} from "@/lib/actions/event.actions";
 import Image from "next/image";
-import EventCard from "@/components/EventCard";
 import {cacheLife} from "next/cache";
 import BookEvent from "@/components/BookEvent";
 import {Skeleton} from "@/components/ui/skeleton";
@@ -15,23 +12,7 @@ import DogThumbnail from "@/components/DogThumbnail";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const EventDetailItem = ({ icon, alt, label }: { icon: string; alt: string; label: string; }) => (
-    <div className="flex-row-gap-2 items-center">
-        <Image src={icon} alt={alt} width={17} height={17} />
-        <p>{label}</p>
-    </div>
-)
 
-const EventAgenda = ({ agendaItems }: { agendaItems: string[] }) => (
-    <div className="agenda">
-        <h2>Agenda</h2>
-        <ul>
-            {agendaItems.map((item) => (
-                <li key={item}>{item}</li>
-            ))}
-        </ul>
-    </div>
-)
 
 const EventTags = ({ tags }: { tags: string[] }) => (
     <div className="flex flex-row gap-1.5 flex-wrap">
@@ -78,7 +59,6 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
 
     const similarDogs: IDog[]= await getSimilarDogsBySlug(slug);
 
-    // const similarEvents: IEvent[] = await getSimilarEventsBySlug(slug);
 
     return (
         <Suspense fallback={<div className="flex w-full max-w-xs flex-col gap-2">
