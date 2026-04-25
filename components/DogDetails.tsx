@@ -23,8 +23,8 @@ const EventTags = ({ tags }: { tags: string[] }) => (
 )
 
 const DogDetails = async ({ params }: { params: Promise<string> }) => {
-    // 'use cache'
-    // cacheLife('hours');
+    'use cache'
+    cacheLife('hours');
     const slug = await params;
 
     let dog;

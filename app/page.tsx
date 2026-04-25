@@ -12,6 +12,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import EventCard from "@/components/EventCard";
+import {events,dogs} from "@/lib/constants"
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const Home =  async () => {
     'use cache'
@@ -19,10 +20,10 @@ const Home =  async () => {
     //server-side fetch
     // const fetchSample = await fetch('https://jsonplaceholder.typicode.com/posts');
     // if (!fetchSample.ok) throw new Error("fetched API fail")
-    const response = await fetch(`${BASE_URL}/api/events`);
-    const {events} = await response.json();
-    const dogsresponse = await fetch(`${BASE_URL}/api/dogs`);
-    const {dogs} = await dogsresponse.json();
+    // const response = await fetch(`${BASE_URL}/api/events`);
+    // const {events} = await response.json();
+    // const dogsresponse = await fetch(`${BASE_URL}/api/dogs`);
+    // const {dogs} = await dogsresponse.json();
 
     return (
         <section>
