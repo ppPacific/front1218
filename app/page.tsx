@@ -4,16 +4,12 @@ import React, { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { IEvent } from "@/database";
-import { cacheLife } from "next/cache";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import EventCard from "@/components/EventCard";
-import { events, dogs } from "@/lib/constants";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const Home = async () => {
-  "use cache";
-  cacheLife("hours");
   //server-side fetch
 
   const response = await fetch(`${BASE_URL}/api/events`);

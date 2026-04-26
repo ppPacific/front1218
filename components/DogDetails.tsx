@@ -31,7 +31,7 @@ async function getDogBySlug(slug: string) {
   const request = await fetch(`${BASE_URL}/api/dogs/${slug}`, {
     next: { revalidate: 60 },
   });
-  console.log(request);
+  //console.log(request);
   if (!request.ok) {
     if (request.status === 404) {
       return null;
@@ -43,9 +43,6 @@ async function getDogBySlug(slug: string) {
   return response.dog ?? null;
 }
 const DogDetails = async ({ slug }: { slug: string }) => {
-  // "use cache";
-  // cacheLife("hours");
-  // const slug = await params;
   const dog = await getDogBySlug(slug);
   if (!dog) notFound();
 

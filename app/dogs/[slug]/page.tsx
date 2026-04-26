@@ -15,11 +15,9 @@ const DogDetailPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   return (
-    <main>
-      <Suspense fallback={<div>Loading..</div>}>
-        <DogDetailsWrapper params={params} />
-      </Suspense>
-    </main>
+    <Suspense fallback={<div>Loading..</div>}>
+      <DogDetailsWrapper params={params} />
+    </Suspense>
   );
 };
 

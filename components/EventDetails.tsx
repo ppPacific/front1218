@@ -4,7 +4,6 @@ import { IEvent } from "@/database";
 import { getSimilarEventsBySlug } from "@/lib/actions/event.actions";
 import Image from "next/image";
 import EventCard from "@/components/EventCard";
-import { cacheLife } from "next/cache";
 import BookEvent from "@/components/BookEvent";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -46,34 +45,28 @@ const EventTags = ({ tags }: { tags: string[] }) => (
   </div>
 );
 
-const EventDetails = async ({ params }: { params: Promise<string> }) => {
-  "use cache";
-  cacheLife("hours");
-  const slug = await params;
-
-  let event;
-  try {
-    const request = await fetch(`${BASE_URL}/api/events/${slug}`, {
-      next: { revalidate: 60 },
-    });
-
-    if (!request.ok) {
-      if (request.status === 404) {
-        return notFound();
-      }
-      throw new Error(`Failed to fetch event: ${request.statusText}`);
-    }
-
-    const response = await request.json();
-    event = response.event;
-
-    if (!event) {
-      return notFound();
-    }
-  } catch (error) {
-    console.error("Error fetching event:", error);
-    return notFound();
+async function getEventBySlug(slug: string) {
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  if (!BASE_URL) {
+    throw new Error("NEXT_PUBLIC_BASE_URL is missing");
   }
+  const request = await fetch(`${BASE_URL}/api/events/${slug}`, {
+    next: { revalidate: 60 },
+  });
+  //console.log(request);
+  if (!request.ok) {
+    if (request.status === 404) {
+      return null;
+    }
+    throw new Error(`Failed to fetch event: ${request.statusText}`);
+  }
+
+  const response = await request.json();
+  return response.event ?? null;
+}
+const EventDetails = async ({ slug }: { slug: string }) => {
+  const event = await getEventBySlug(slug);
+  if (!event) notFound();
 
   const {
     description,
@@ -88,8 +81,6 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
     tags,
     organizer,
   } = event;
-
-  if (!description) return notFound();
 
   const bookings = 10;
 
