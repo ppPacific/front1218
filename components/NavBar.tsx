@@ -10,7 +10,6 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
-import { currentUser } from "@clerk/nextjs/server";
 import { Search } from "lucide-react";
 import DogSearchModal from "@/components/DogSearchModal";
 import { usePathname, useRouter } from "next/navigation";
@@ -39,7 +38,7 @@ const NavBar = () => {
   };
 
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<div>Loading...</div>}>
       <div className={`flex items-center justify-end gap-x-2`}>
         <SignedOut>
           <SignInButton mode={"modal"}>
