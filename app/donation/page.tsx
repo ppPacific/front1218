@@ -1,12 +1,10 @@
-import React from 'react'
-import {useTranslations} from "next-intl";
+import React from "react";
 
 const Page = () => {
-    // const t = useTranslations("home");
-    return (
-        <div>
-            <h2>Sponsor a dog, save a life!</h2>
-        </div>
-    )
-}
-export default Page
+  return (
+    <div>
+      <h2>Sponsor a dog, save a life!</h2>
+    </div>
+  );
+};
+export default Page;
