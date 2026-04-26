@@ -5,9 +5,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { IEvent } from "@/database";
 import { cacheLife } from "next/cache";
-import EventSlider from "@/components/EventSlider";
-import { Swiper } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -20,11 +17,11 @@ const Home = async () => {
   //server-side fetch
   // const fetchSample = await fetch('https://jsonplaceholder.typicode.com/posts');
   // if (!fetchSample.ok) throw new Error("fetched API fail")
-  // const response = await fetch(`${BASE_URL}/api/events`);
-  // const {events} = await response.json();
-  // const dogsresponse = await fetch(`${BASE_URL}/api/dogs`);
-  // const {dogs} = await dogsresponse.json();
-  console.log("test" + new Date());
+  const response = await fetch(`${BASE_URL}/api/events`);
+  const { events } = await response.json();
+  const dogsresponse = await fetch(`${BASE_URL}/api/dogs`);
+  const { dogs } = await dogsresponse.json();
+  //console.log("test" + new Date());
   return (
     <section>
       <div className="mt-[-70]">
