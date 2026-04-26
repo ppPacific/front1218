@@ -1,42 +1,42 @@
-'use client'
+"use client";
 
-import posthog from 'posthog-js'
-import { PostHogProvider as PHProvider, usePostHog } from 'posthog-js/react'
-import { useEffect, Suspense } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
+import posthog from "posthog-js";
+import { PostHogProvider as PHProvider, usePostHog } from "posthog-js/react";
+import { useEffect, Suspense } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 
 function PostHogPageView() {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const posthogClient = usePostHog()
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const posthogClient = usePostHog();
 
   useEffect(() => {
     if (pathname && posthogClient) {
-      let url = window.origin + pathname
-      const search = searchParams.toString()
-      if (search) url += '?' + search
-      posthogClient.capture('$pageview', { $current_url: url })
+      let url = window.origin + pathname;
+      const search = searchParams.toString();
+      if (search) url += "?" + search;
+      posthogClient.capture("$pageview", { $current_url: url });
     }
-  }, [pathname, searchParams, posthogClient])
+  }, [pathname, searchParams, posthogClient]);
 
-  return null
+  return null;
 }
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
       api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-      person_profiles: 'identified_only',
+      person_profiles: "identified_only",
       capture_pageview: false,
-    })
-  }, [])
+    });
+  }, []);
 
   return (
-    <PHProvider client={posthog}>
-      <Suspense fallback={null}>
+    <Suspense fallback={null}>
+      <PHProvider client={posthog}>
         <PostHogPageView />
-      </Suspense>
-      {children}
-    </PHProvider>
-  )
+        {children}
+      </PHProvider>
+    </Suspense>
+  );
 }
