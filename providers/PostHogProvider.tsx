@@ -32,11 +32,12 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <Suspense fallback={null}>
-      <PHProvider client={posthog}>
+    <PHProvider client={posthog}>
+      <Suspense fallback={null}>
         <PostHogPageView />
-        {children}
-      </PHProvider>
-    </Suspense>
+      </Suspense>
+
+      {children}
+    </PHProvider>
   );
 }
