@@ -75,7 +75,7 @@ export default async function RootLayout({
                             <Link href={`/`}>Dog Rescue - Bring Love Home</Link>
                           </div>
                         </div>
-                        <NavBar />
+                        {/*<NavBar />*/}
                         {/*desktop nav*/}
                         {/*mobile nav*/}
                       </div>
