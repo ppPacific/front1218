@@ -8,14 +8,15 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import EventCard from "@/components/EventCard";
+import { dogs, events } from "@/lib/constants";
 const Home = async () => {
   //server-side fetch
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
-  const response = await fetch(`${BASE_URL}/api/events`);
-  const { events } = await response.json();
-  const dogsresponse = await fetch(`${BASE_URL}/api/dogs`);
-  const { dogs } = await dogsresponse.json();
+  // const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  //
+  // const response = await fetch(`${BASE_URL}/api/events`);
+  // const { events } = await response.json();
+  // const dogsresponse = await fetch(`${BASE_URL}/api/dogs`);
+  // const { dogs } = await dogsresponse.json();
 
   return (
     <Suspense fallback={<p>loading...</p>}>
@@ -54,7 +55,7 @@ const Home = async () => {
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {dogs.slice(0, 6).map((dog) => (
-              <DogCard key={dog._id} {...dog} />
+              <DogCard key={dog.name} {...dog} />
             ))}
           </div>
         </div>
