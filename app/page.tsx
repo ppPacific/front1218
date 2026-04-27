@@ -8,9 +8,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import EventCard from "@/components/EventCard";
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const Home = async () => {
   //server-side fetch
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   const response = await fetch(`${BASE_URL}/api/events`);
   const { events } = await response.json();
