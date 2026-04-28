@@ -6,6 +6,7 @@ import Image from "next/image";
 import EventCard from "@/components/EventCard";
 import BookEvent from "@/components/BookEvent";
 import { Skeleton } from "@/components/ui/skeleton";
+import { PROD_URL } from "@/lib/constants";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -51,7 +52,7 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
   let event;
   let urlSrc = `${BASE_URL}/api/events/${slug}`;
   if (process.env.NODE_ENV !== "development") {
-    urlSrc = `/api/events/${slug}`;
+    urlSrc = `${PROD_URL}/api/events/${slug}`;
   }
   try {
     const request = await fetch(urlSrc, {
