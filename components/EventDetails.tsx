@@ -45,29 +45,31 @@ const EventTags = ({ tags }: { tags: string[] }) => (
   </div>
 );
 
-async function getEventBySlug(slug: string) {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!BASE_URL) {
-    throw new Error("NEXT_PUBLIC_BASE_URL is missing");
-  }
-  const request = await fetch(`${BASE_URL}/api/events/${slug}`, {
-    next: { revalidate: 60 },
-  });
-  //console.log(request);
-  if (!request.ok) {
-    if (request.status === 404) {
-      return null;
+const EventDetails = async ({ params }: { params: Promise<string> }) => {
+  const slug = await params;
+  let event;
+  try {
+    const request = await fetch(`${BASE_URL}/api/events/${slug}`, {
+      next: { revalidate: 60 },
+    });
+
+    if (!request.ok) {
+      if (request.status === 404) {
+        return notFound();
+      }
+      throw new Error(`Failed to fetch event: ${request.statusText}`);
     }
-    throw new Error(`Failed to fetch event: ${request.statusText}`);
+
+    const response = await request.json();
+    event = response.event;
+
+    if (!event) {
+      return notFound();
+    }
+  } catch (error) {
+    console.error("Error fetching event:", error);
+    return notFound();
   }
-
-  const response = await request.json();
-  return response.event ?? null;
-}
-const EventDetails = async ({ slug }: { slug: string }) => {
-  const event = await getEventBySlug(slug);
-  if (!event) notFound();
-
   const {
     description,
     image,
