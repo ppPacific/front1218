@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import EventDetails from "@/components/EventDetails";
-import DogDetails from "@/components/DogDetails";
 
 // async function EventDetailsWrapper({
 //   params,
