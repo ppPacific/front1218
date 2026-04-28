@@ -47,15 +47,16 @@ const EventTags = ({ tags }: { tags: string[] }) => (
 
 const EventDetails = async ({ params }: { params: Promise<string> }) => {
   const slug = await params;
+  console.log("params slug:", slug);
   let event;
   try {
     const request = await fetch(`${BASE_URL}/api/events/${slug}`, {
       next: { revalidate: 60 },
     });
-
+    console.log(request);
     if (!request.ok) {
       if (request.status === 404) {
-        console.log(`failing....inside calling api/events/slug`);
+        console.log(`failing....inside calling api/events/slug `);
         return notFound();
       }
       throw new Error(`Failed to fetch event: ${request.statusText}`);
@@ -65,6 +66,7 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
     event = response.event;
 
     if (!event) {
+      console.log("event not found for slug:", slug);
       return notFound();
     }
   } catch (error) {
