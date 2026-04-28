@@ -52,7 +52,7 @@ const DogCard = ({
           <div className="relative aspect-[4/5] md:aspect-auto md:h-full">
             {image && image.length > 0 && (
               <Image
-                src={image[0].url as string}
+                src={image?.[0]?.url || `/images/dog_placeholder.png`}
                 alt={name}
                 fill
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
