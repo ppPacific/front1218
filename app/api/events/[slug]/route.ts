@@ -53,6 +53,7 @@ export async function GET(
       { status: 200 },
     );
   } catch (error) {
+    console.log(`catch fail catch event`);
     // Log error for debugging (only in development)
     if (process.env.NODE_ENV === "development") {
       console.error("Error fetching events by slug:", error);

@@ -55,6 +55,7 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
 
     if (!request.ok) {
       if (request.status === 404) {
+        console.log(`failing....inside calling api/events/slug`);
         return notFound();
       }
       throw new Error(`Failed to fetch event: ${request.statusText}`);
