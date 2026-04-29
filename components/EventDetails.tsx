@@ -58,10 +58,9 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
     const request = await fetch(urlSrc, {
       next: { revalidate: 60 },
     });
-    console.log(request);
+    //console.log(request);
     if (!request.ok) {
       if (request.status === 404) {
-        //console.log(`failing....inside calling api/events/slug `);
         return notFound();
       }
       throw new Error(`Failed to fetch event: ${request.statusText}`);
@@ -94,7 +93,6 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
   const bookings = 10;
 
   const similarEvents: IEvent[] = await getSimilarEventsBySlug(slug);
-  // console.log(`similar event`+similarEvents)
   return (
     <section id="event">
       <div className="header">
@@ -166,17 +164,13 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
       <div className="flex w-full flex-col gap-4 pt-20">
         <h2>Similar Events</h2>
         <div className="events">
-          {similarEvents.length == 0 && (
-            <div className="flex w-full max-w-xs flex-col gap-2">
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-3/4" />
-            </div>
-          )}
-          {similarEvents.length > 0 &&
+          {similarEvents.length === 0 ? (
+            <p>No similar events found.</p>
+          ) : (
             similarEvents.map((similarEvent: IEvent) => (
               <EventCard key={similarEvent.title} {...similarEvent} />
-            ))}
+            ))
+          )}
         </div>
       </div>
     </section>
