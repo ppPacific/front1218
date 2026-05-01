@@ -45,7 +45,21 @@ const EventTags = ({ tags }: { tags: string[] }) => (
     ))}
   </div>
 );
+async function SimilarEvents({ slug }: { slug: string }) {
+  const similarEvents = await getSimilarEventsBySlug(slug);
 
+  if (similarEvents.length === 0) {
+    return <p>No similar events found.</p>;
+  }
+
+  return (
+    <div className="events">
+      {similarEvents.map((event: IEvent) => (
+        <EventCard key={event.slug || event._id?.toString?.()} {...event} />
+      ))}
+    </div>
+  );
+}
 const EventDetails = async ({ params }: { params: Promise<string> }) => {
   const slug = await params;
 
@@ -92,7 +106,7 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
 
   const bookings = 10;
 
-  const similarEvents: IEvent[] = await getSimilarEventsBySlug(slug);
+  //const similarEvents: IEvent[] = await getSimilarEventsBySlug(slug);
   return (
     <section id="event">
       <div className="header">
@@ -164,13 +178,17 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
       <div className="flex w-full flex-col gap-4 pt-20">
         <h2>Similar Events</h2>
         <div className="events">
-          {similarEvents.length === 0 ? (
-            <p>No similar events found.</p>
-          ) : (
-            similarEvents.map((similarEvent: IEvent) => (
-              <EventCard key={similarEvent.title} {...similarEvent} />
-            ))
-          )}
+          <Suspense
+            fallback={
+              <div className="flex w-full max-w-xs flex-col gap-2">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-3/4" />
+              </div>
+            }
+          >
+            <SimilarEvents slug={slug} />
+          </Suspense>
         </div>
       </div>
     </section>

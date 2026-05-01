@@ -38,7 +38,7 @@ export async function GET(
 
     // Query events by slug
     const event = await Event.findOne({ slug: sanitizedSlug }).lean();
-    console.log(`find one event ${event}`);
+    //console.log(`find one event ${event}`);
     // Handle events not found
     if (!event) {
       return NextResponse.json(

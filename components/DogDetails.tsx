@@ -12,6 +12,10 @@ import {
 } from "@/components/ui/card";
 import { getSimilarDogsBySlug } from "@/lib/actions/dog.actions";
 import DogThumbnail from "@/components/DogThumbnail";
+import { PROD_URL } from "@/lib/constants";
+import { IDog } from "@/database/dog.model";
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const EventTags = ({ tags }: { tags: string[] }) => (
   <div className="flex flex-row gap-1.5 flex-wrap">
@@ -23,29 +27,33 @@ const EventTags = ({ tags }: { tags: string[] }) => (
   </div>
 );
 
-async function getDogBySlug(slug: string) {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!BASE_URL) {
-    throw new Error("NEXT_PUBLIC_BASE_URL is missing");
+const DogDetails = async ({ params }: { params: Promise<string> }) => {
+  const slug = await params;
+  let dog;
+  let urlSrc = `${BASE_URL}/api/dogs/${slug}`;
+  if (process.env.NODE_ENV !== "development") {
+    urlSrc = `${PROD_URL}/api/dogs/${slug}`;
   }
-  const request = await fetch(`${BASE_URL}/api/dogs/${slug}`, {
-    next: { revalidate: 60 },
-  });
-  //console.log(request);
-  if (!request.ok) {
-    if (request.status === 404) {
-      return null;
+
+  try {
+    const request = await fetch(urlSrc, {
+      next: { revalidate: 60 },
+    });
+
+    if (!request.ok) {
+      if (request.status === 404) {
+        return notFound();
+      }
+      throw new Error(`Failed to fetch dog: ${request.statusText}`);
     }
-    throw new Error(`Failed to fetch dog: ${request.statusText}`);
+
+    const response = await request.json();
+    dog = response.dog;
+    if (!dog) return notFound();
+  } catch (error) {
+    console.error("Error fetching dog:", error);
+    return notFound();
   }
-
-  const response = await request.json();
-  return response.dog ?? null;
-}
-const DogDetails = async ({ slug }: { slug: string }) => {
-  const dog = await getDogBySlug(slug);
-  if (!dog) notFound();
-
   const {
     description,
     image,
@@ -61,7 +69,7 @@ const DogDetails = async ({ slug }: { slug: string }) => {
 
   const bookings = 10;
 
-  // const similarDogs: IDog[] = await getSimilarDogsBySlug(slug);
+  const similarDogs: IDog[] = await getSimilarDogsBySlug(slug);
 
   return (
     <section id="event">
@@ -74,7 +82,7 @@ const DogDetails = async ({ slug }: { slug: string }) => {
         {/*    Left Side - Event Content */}
         <div className="content">
           <Image
-            src={image[0].url}
+            src={image?.[0]?.url || `/images/dog_placeholder.png`}
             alt="Event Banner"
             width={800}
             height={800}
@@ -94,7 +102,7 @@ const DogDetails = async ({ slug }: { slug: string }) => {
         {/*    Right Side - Booking Form */}
         <aside className="booking">
           <div className="signup-card">
-            <h2>Book to meet this doggie!</h2>
+            <h2>Schedule to meet this doggie!</h2>
             {bookings > 0 ? (
               <p className="text-sm">
                 Join {bookings} people who have already booked their spot!
@@ -142,19 +150,19 @@ const DogDetails = async ({ slug }: { slug: string }) => {
 
       <div className="flex w-full flex-col gap-4 pt-20">
         <h2>You might be interested in these dogs too:</h2>
-        {/*<div className="events">*/}
-        {/*  {similarDogs.length == 0 && (*/}
-        {/*    <div className="flex w-full max-w-xs flex-col gap-2">*/}
-        {/*      <Skeleton className="h-4 w-full" />*/}
-        {/*      <Skeleton className="h-4 w-full" />*/}
-        {/*      <Skeleton className="h-4 w-3/4" />*/}
-        {/*    </div>*/}
-        {/*  )}*/}
-        {/*  {similarDogs.length > 0 &&*/}
-        {/*    similarDogs.map((similarDog: IDog) => (*/}
-        {/*      <DogThumbnail key={similarDog.name} {...similarDog} />*/}
-        {/*    ))}*/}
-        {/*</div>*/}
+        <div className="events">
+          {similarDogs.length == 0 && (
+            <div className="flex w-full max-w-xs flex-col gap-2">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
+            </div>
+          )}
+          {similarDogs.length > 0 &&
+            similarDogs.map((similarDog: IDog) => (
+              <DogThumbnail key={similarDog.name} {...similarDog} />
+            ))}
+        </div>
       </div>
     </section>
   );
