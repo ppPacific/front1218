@@ -63,7 +63,7 @@ const NavBar = () => {
           aria-label={"Open Search"}
           onClick={() => {
             setOpen(true);
-            handleSearchClick;
+            //handleSearchClick;
           }}
         >
           <Search />
