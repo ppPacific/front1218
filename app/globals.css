@@ -307,7 +307,7 @@
   @apply mt-3 flex gap-x-2 flex justify-center overflow-x-auto
 }
 .suggestion-button{
-  @apply text-black rounded-none border-1 uppercase bg-white cursor-pointer px-4 py-4 align-middle
+  @apply text-black rounded-none border-1 uppercase bg-white cursor-pointer px-4 py-2 align-middle
 }
 /*@utility text-gradient {*/
 /*  @apply to-blue bg-gradient-to-b from-white via-white bg-clip-text font-semibold text-transparent;*/

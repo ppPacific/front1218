@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
 import { FolderLike } from "@/components/FolderLike";
@@ -12,31 +12,12 @@ import {
 } from "@clerk/nextjs";
 import { Search } from "lucide-react";
 import DogSearchModal from "@/components/DogSearchModal";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 const NavBar = () => {
   // const user = await currentUser()
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
-
-  const handleSearchClick = () => {
-    if (pathname && pathname.includes("/search-result")) {
-      const existingSearchInput = document.getElementById("dogs-search-input");
-      if (existingSearchInput) {
-        //existingSearchInput.focus();
-        existingSearchInput.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      } else {
-        router.push("/search-result");
-      }
-      return;
-    }
-
-    setOpen(true);
-  };
-
+  const isSearchResultPage = pathname === "/search-result";
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className={`flex items-center justify-end gap-x-2`}>
@@ -62,8 +43,8 @@ const NavBar = () => {
           variant={"outline"}
           aria-label={"Open Search"}
           onClick={() => {
+            if (isSearchResultPage) return;
             setOpen(true);
-            //handleSearchClick;
           }}
         >
           <Search />

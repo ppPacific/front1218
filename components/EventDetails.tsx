@@ -37,9 +37,12 @@ const EventAgenda = ({ agendaItems }: { agendaItems: string[] }) => (
 );
 
 const EventTags = ({ tags }: { tags: string[] }) => (
-  <div className="flex flex-row gap-1.5 flex-wrap">
+  <div className="flex flex-row gap-2.5 flex-wrap">
     {tags.map((tag) => (
-      <div className="pill" key={tag}>
+      <div
+        className="text-xs rounded-[6px] px-5 py-2 ring-1 text-light-100"
+        key={tag}
+      >
         {tag}
       </div>
     ))}
@@ -54,7 +57,7 @@ async function SimilarEvents({ slug }: { slug: string }) {
 
   return (
     <div className="events">
-      {similarEvents.map((event: IEvent) => (
+      {similarEvents.slice(0, 1).map((event: IEvent) => (
         <EventCard key={event.slug || event._id?.toString?.()} {...event} />
       ))}
     </div>
@@ -110,7 +113,7 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
   return (
     <section id="event">
       <div className="header">
-        <h1>Event Description</h1>
+        <h2 className={``}>Event Description</h2>
         <p>{description}</p>
       </div>
 

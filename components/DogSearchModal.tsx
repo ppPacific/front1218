@@ -1,19 +1,22 @@
 "use client";
 import { X } from "lucide-react";
 import Image from "next/image";
-import React, { Suspense, useEffect, useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import React, { Suspense, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Search from "@/components/Search";
 
 type DogSearchModalProps = {
   open: boolean;
   onClose: () => void;
 };
-const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
-  const [keyword, setKeyword] = useState("");
-  const router = useRouter();
 
+const categories = ["PUPPY", "SENIOR DOG", "FEATURED", "CALM"];
+const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
+  const pathname = usePathname();
+  const isSearchResultPage = pathname === "/search-result";
   useEffect(() => {
+    if (isSearchResultPage) return;
     if (!open) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
@@ -27,24 +30,9 @@ const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [open, onClose]);
+  }, [open, onClose, isSearchResultPage]);
 
-  const normalizedKeyword = useMemo(() => keyword.trim(), [keyword]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!normalizedKeyword) return;
-
-    router.push(`/search-result?q=${encodeURIComponent(normalizedKeyword)}`);
-    onClose();
-  };
-
-  const handleTagClick = (tag: string) => {
-    router.push(`/search-result?tag=${encodeURIComponent(tag)}`);
-    onClose();
-  };
-
-  if (!open) return null;
+  if (!open || isSearchResultPage) return null;
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div
@@ -70,28 +58,18 @@ const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
           />
         </div>
 
-        <div className={"modal__search-wrap"}>
-          <div className={"modal__search"}>
-            <div className={"modal__input-wrap"}>
-              <form className={"modal__input-wrap"} onSubmit={handleSubmit}>
-                <input
-                  id={"dogs-search-input"}
-                  className={"modal__input"}
-                  placeholder={"search doggies..."}
-                  value={keyword}
-                  type={"text"}
-                  onChange={(e) => setKeyword(e.target.value)}
-                />
-                <Button className={"modal__button"}>search</Button>
-              </form>
-            </div>
-          </div>
-        </div>
+        <Search placeholder={"search doggies.."} onClose={onClose} />
         <div className={"modal__suggestion-block"}>
-          <Button className={"suggestion-button"}>puppy</Button>
-          <Button className={"suggestion-button"}>senior dog</Button>
-          <Button className={"suggestion-button"}>featured</Button>
-          <Button className={"suggestion-button"}>calm</Button>
+          {categories.map((cat) => (
+            <Link
+              key={cat}
+              href={`/search-result?q=${cat.toLowerCase()}`}
+              className="suggestion-button"
+              onClick={onClose}
+            >
+              {cat}
+            </Link>
+          ))}
         </div>
       </div>
     </Suspense>

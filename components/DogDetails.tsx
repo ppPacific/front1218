@@ -70,6 +70,7 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
   const bookings = 10;
 
   const similarDogs: IDog[] = await getSimilarDogsBySlug(slug);
+  const converteddata = JSON.parse(JSON.stringify(similarDogs));
 
   return (
     <section id="event">
@@ -84,13 +85,13 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
           <Image
             src={image?.[0]?.url || `/images/dog_placeholder.png`}
             alt="Event Banner"
-            width={800}
-            height={800}
+            width={1200}
+            height={1200}
             className="banner"
+            loading="eager"
           />
 
           <section className="flex-col-gap-2">
-            {/*<h2>Overview</h2>*/}
             <p>
               About {name}: {description}
             </p>
@@ -151,17 +152,19 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
       <div className="flex w-full flex-col gap-4 pt-20">
         <h2>You might be interested in these dogs too:</h2>
         <div className="events">
-          {similarDogs.length == 0 && (
+          {converteddata.length == 0 ? (
             <div className="flex w-full max-w-xs flex-col gap-2">
               <Skeleton className="h-4 w-full" />
               <Skeleton className="h-4 w-full" />
               <Skeleton className="h-4 w-3/4" />
             </div>
+          ) : (
+            <div className="grid gap-6 md:grid-cols-4">
+              {converteddata.slice(0, 3).map((similarDog: IDog) => (
+                <DogThumbnail key={similarDog.name} {...similarDog} />
+              ))}
+            </div>
           )}
-          {similarDogs.length > 0 &&
-            similarDogs.map((similarDog: IDog) => (
-              <DogThumbnail key={similarDog.name} {...similarDog} />
-            ))}
         </div>
       </div>
     </section>
