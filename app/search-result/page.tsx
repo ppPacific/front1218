@@ -1,9 +1,10 @@
 import { dogs } from "@/lib/constants";
-import { Button } from "@/components/ui/button";
 import React, { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import ResultDetails from "@/components/SearchResults";
 import Search from "@/components/Search";
+import { dogsearching } from "@/lib/data/dogsearching";
+import Pagination from "@/components/Pagination";
 
 export default async function SearchResultPage({
   searchParams,
@@ -13,7 +14,7 @@ export default async function SearchResultPage({
   const params = await searchParams;
   const q = params.q?.trim().toLowerCase() || "";
   const currentPage = Number(params?.page) || 1;
-
+  const { totalPages } = await dogsearching(q, currentPage, 8);
   return (
     <div className={"px-4 flex flex-col gap-y-10"}>
       <h1 className={"text-center text-xl"}>RESULTS FOR "{q}"</h1>
@@ -33,6 +34,9 @@ export default async function SearchResultPage({
       >
         <ResultDetails currentPage={currentPage} query={q} />
       </Suspense>
+      <div className="mt-5 flex w-full justify-center">
+        <Pagination totalPages={totalPages} />
+      </div>
     </div>
   );
 }

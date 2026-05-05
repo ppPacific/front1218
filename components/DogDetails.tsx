@@ -14,15 +14,20 @@ import { getSimilarDogsBySlug } from "@/lib/actions/dog.actions";
 import DogThumbnail from "@/components/DogThumbnail";
 import { PROD_URL } from "@/lib/constants";
 import { IDog } from "@/database/dog.model";
+import Link from "next/link";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const EventTags = ({ tags }: { tags: string[] }) => (
-  <div className="flex flex-row gap-1.5 flex-wrap">
+const Tags = ({ tags }: { tags: string[] }) => (
+  <div className="mt-3 flex gap-x-2 flex justify-start overflow-x-auto">
     {tags.map((tag) => (
-      <div className="pill" key={tag}>
+      <Link
+        key={tag}
+        href={`/search-result?q=${tag.toLowerCase()}&page=1`}
+        className="suggestion-button"
+      >
         {tag}
-      </div>
+      </Link>
     ))}
   </div>
 );
@@ -75,7 +80,7 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
   return (
     <section id="event">
       <div className="header">
-        <h1>{name}</h1>
+        <h2>{name}</h2>
         <p>{description}</p>
       </div>
 
@@ -87,19 +92,12 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
             alt="Event Banner"
             width={1200}
             height={1200}
-            className="banner"
+            className="dogphoto"
             loading="eager"
           />
 
-          <section className="flex-col-gap-2">
-            <p>
-              About {name}: {description}
-            </p>
-            <p>Age: {age}</p>
-          </section>
-          <EventTags tags={featureTag} />
+          <Tags tags={featureTag} />
         </div>
-
         {/*    Right Side - Booking Form */}
         <aside className="booking">
           <div className="signup-card">
@@ -116,18 +114,29 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
           </div>
         </aside>
       </div>
-      <Tabs defaultValue="overview" className="min-w-[400px]">
-        <TabsList>
-          <TabsTrigger value="basic">Basic Info</TabsTrigger>
-          <TabsTrigger value="advanced">Summary</TabsTrigger>
+      <Tabs defaultValue="overview" className="min-w-[400px] mt-10">
+        <TabsList variant="line">
+          <TabsTrigger value="overview" className={"cursor-pointer"}>
+            Basic Info
+          </TabsTrigger>
+          <TabsTrigger value="advanced" className={"cursor-pointer"}>
+            Summary
+          </TabsTrigger>
         </TabsList>
-        <TabsContent value="basic">
+        <TabsContent value="overview">
           <Card>
             <CardHeader>
-              <CardTitle>Basic metrics</CardTitle>
-              <CardDescription>Default metrics showing</CardDescription>
+              <CardTitle>{name}</CardTitle>
+              {/*<CardDescription>Default metrics showing</CardDescription>*/}
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
+            <CardContent className="text-sm">
+              <section className="flex-col-gap-2">
+                <p>Age: {age}</p>
+                <p>Size: {size}</p>
+                <p>Kennel location: {kennelLocation}</p>
+                <p>Breed: {breed}</p>
+                <p>Sex: {sex}</p>
+              </section>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4"></div>
               <br />
             </CardContent>
@@ -136,14 +145,13 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
         <TabsContent value="advanced">
           <Card>
             <CardHeader>
-              <CardTitle>Advanced metrics</CardTitle>
-              <CardDescription>
-                Track performance and user engagement metrics. Monitor trends
-                and identify growth opportunities.
-              </CardDescription>
+              <CardTitle>Summary</CardTitle>
+              <CardDescription></CardDescription>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              Page views are up 25% compared to last month.
+            <CardContent className="text-sm">
+              <p>
+                About {name}: {description}
+              </p>
             </CardContent>
           </Card>
         </TabsContent>

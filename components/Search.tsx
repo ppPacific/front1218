@@ -6,7 +6,7 @@ import React, { useMemo, useState } from "react";
 
 type DogSearchProps = {
   placeholder: string;
-  onClose: () => void;
+  onClose?: () => void;
 };
 export default function Search({ placeholder }: DogSearchProps) {
   const searchParams = useSearchParams();
@@ -19,7 +19,9 @@ export default function Search({ placeholder }: DogSearchProps) {
     e.preventDefault();
     if (!normalizedKeyword) return;
 
-    router.push(`/search-result?q=${encodeURIComponent(normalizedKeyword)}`);
+    router.push(
+      `/search-result?q=${encodeURIComponent(normalizedKeyword)}&page=1`,
+    );
   };
 
   return (

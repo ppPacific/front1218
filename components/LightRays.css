@@ -1,6 +1,7 @@
 .light-rays-container {
   width: 100%;
-  height: 200%;
+  /*min-height: 100%;*/
+  height: 180%;
   position: relative;
   pointer-events: none;
   z-index: 3;

@@ -226,6 +226,9 @@
       .banner {
         @apply max-h-[457px] w-full rounded-lg object-cover;
       }
+      .dogphoto {
+        @apply max-h-[680px] w-full rounded-lg object-contain;
+      }
 
       .agenda {
         @apply flex flex-col gap-2;
