@@ -12,7 +12,7 @@ export default async function ResultDetails({
 }) {
   const { dogs } = await dogsearching(query, currentPage, 8);
   // ...
-  console.log(`currentP ${currentPage}, query ${query}`);
+  //console.log(`currentP ${currentPage}, query ${query}`);
   return (
     <div>
       <section>

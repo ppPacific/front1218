@@ -10,10 +10,12 @@ import {
   SignInButton,
 } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 
-const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
+const BookVisit = ({ eventId, slug }: { eventId: string; slug: string }) => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +30,7 @@ const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
       posthog.captureException("Booking creation failed");
     }
   };
-
+  console.log(date);
   return (
     <div id="book-event">
       {submitted ? (
@@ -45,6 +47,13 @@ const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
               placeholder="Enter your email address"
             />
           </div>
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={setDate}
+            className="rounded-lg border"
+            disabled={(date) => date < new Date()}
+          />
           <SignedOut>
             <SignInButton mode={"modal"}>
               <Button
@@ -66,4 +75,4 @@ const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
     </div>
   );
 };
-export default BookEvent;
+export default BookVisit;

@@ -15,6 +15,8 @@ import DogThumbnail from "@/components/DogThumbnail";
 import { PROD_URL } from "@/lib/constants";
 import { IDog } from "@/database/dog.model";
 import Link from "next/link";
+import BookVisit from "@/components/BookVisit";
+import WhatsAppShare from "@/components/WhatsAppShare";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -31,6 +33,22 @@ const Tags = ({ tags }: { tags: string[] }) => (
     ))}
   </div>
 );
+const handleNativeShare = async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "Check this out!",
+        url: window.location.href,
+      });
+    } catch (err) {
+      console.error("Error sharing:", err);
+    }
+  } else {
+    // Fallback to the link method above if the browser doesn't support Web Share
+    const whatsappUrl = `https://wa.me{encodeURIComponent(window.location.href)}`;
+    window.open(whatsappUrl, "_blank");
+  }
+};
 
 const DogDetails = async ({ params }: { params: Promise<string> }) => {
   const slug = await params;
@@ -70,6 +88,7 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
     sex,
     featureTag,
     status,
+    _id,
   } = dog;
 
   const bookings = 10;
@@ -98,6 +117,7 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
 
           <Tags tags={featureTag} />
         </div>
+        {/*<WhatsAppShare />*/}
         {/*    Right Side - Booking Form */}
         <aside className="booking">
           <div className="signup-card">
@@ -109,8 +129,8 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
             ) : (
               <p className="text-sm">Be the first to book your spot!</p>
             )}
-
-            {/*    <BookEvent eventId={event._id} slug={event.slug} />*/}
+            {/*//TODO: update create visit server actions*/}
+            {/*<BookVisit eventId={_id} slug={slug} />*/}
           </div>
         </aside>
       </div>
