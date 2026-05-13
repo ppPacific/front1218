@@ -133,7 +133,7 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
             ) : (
               <p className="text-sm">Be the first to book your spot!</p>
             )}
-            {/*//TODO: update create visit server actions*/}
+
             <BookVisit dogId={_id} slug={slug} />
           </div>
         </aside>

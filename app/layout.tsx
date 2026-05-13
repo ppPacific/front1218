@@ -42,54 +42,54 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <PostHogProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <WishlistProvider>
-                <div className="min-h-screen">
-                  <header className="sticky top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
-                    <div
-                      className={`max-w-7xl mx-auto px-4 flex justify-between`}
-                    >
-                      <div className={`flex items-center justify-between h-16`}>
-                        <div className="flex items-center">
-                          <Link href={`/`}>Dog Rescue - Bring Love Home</Link>
-                        </div>
+            {/*<ThemeProvider*/}
+            {/*  attribute="class"*/}
+            {/*  defaultTheme="system"*/}
+            {/*  enableSystem*/}
+            {/*  disableTransitionOnChange*/}
+            {/*>*/}
+            <WishlistProvider>
+              <div className="min-h-screen">
+                <header className="sticky top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
+                  <div
+                    className={`max-w-7xl mx-auto px-4 flex justify-between`}
+                  >
+                    <div className={`flex items-center justify-between h-16`}>
+                      <div className="flex items-center">
+                        <Link href={`/`}>Dog Rescue - Bring Love Home</Link>
                       </div>
-                      <NavBar />
-                      {/*desktop nav*/}
-                      {/*mobile nav*/}
                     </div>
-                  </header>
-                  <div className={"absolute inset-0 top-0 z-[-1] min-h-screen"}>
-                    <LightRays
-                      raysOrigin="top-center-offset"
-                      raysColor="#5dfeca"
-                      raysSpeed={0.5}
-                      lightSpread={0.9}
-                      rayLength={1.4}
-                      followMouse={true}
-                      mouseInfluence={0.02}
-                      noiseAmount={0.0}
-                      distortion={0.01}
-                    ></LightRays>
+                    <NavBar />
+                    {/*desktop nav*/}
+                    {/*mobile nav*/}
                   </div>
-                  <main className={`py-8`}>
-                    <div className="max-w-5xl mx-auto px-4">
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                        {/*<div className="hidden lg:block lg:col-span-3">*/}
-                        {/*  <p>collapsible sidebar</p>*/}
-                        {/*</div>*/}
-                        <div className="lg:col-span-12">{children}</div>
-                      </div>
-                    </div>
-                  </main>
+                </header>
+                <div className={"absolute inset-0 top-0 z-[-1] min-h-screen"}>
+                  <LightRays
+                    raysOrigin="top-center-offset"
+                    raysColor="#5dfeca"
+                    raysSpeed={0.5}
+                    lightSpread={0.9}
+                    rayLength={1.4}
+                    followMouse={true}
+                    mouseInfluence={0.02}
+                    noiseAmount={0.0}
+                    distortion={0.01}
+                  ></LightRays>
                 </div>
-              </WishlistProvider>
-            </ThemeProvider>
+                <main className={`py-8`}>
+                  <div className="max-w-5xl mx-auto px-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                      {/*<div className="hidden lg:block lg:col-span-3">*/}
+                      {/*  <p>collapsible sidebar</p>*/}
+                      {/*</div>*/}
+                      <div className="lg:col-span-12">{children}</div>
+                    </div>
+                  </div>
+                </main>
+              </div>
+            </WishlistProvider>
+            {/*</ThemeProvider>*/}
             <Toaster />
           </PostHogProvider>
         </body>

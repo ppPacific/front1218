@@ -49,15 +49,15 @@ const DogCard = ({
 
       <Link href={`/dogs/${slug}`} className="block">
         <div className="relative md:grid md:grid-cols-[7fr_3fr] md:min-h-[280px]">
-          <div className="relative aspect-[4/5] md:aspect-auto md:h-full">
+          <div className="relative aspect-[4/5] md:aspect-auto md:h-80">
             {image && image.length > 0 && (
               <Image
                 src={image?.[0]?.url || `/images/dog_placeholder.png`}
                 alt={name}
-                // fill
+                fill
                 className="object-cover transition-transform duration-500 ease-out"
-                height={700}
-                width={700}
+                // height={700}
+                // width={700}
                 //sizes="(max-width: 767px) 100vw, (max-width: 1279px) 70vw, 50vw"
               />
             )}
