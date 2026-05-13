@@ -13,9 +13,13 @@ import {
 import { Search } from "lucide-react";
 import DogSearchModal from "@/components/DogSearchModal";
 import { usePathname } from "next/navigation";
+import { WishlistDrawer } from "@/components/WishlistDrawer";
+import WishlistSheet from "@/components/WishlistSheet";
 const NavBar = () => {
   // const user = await currentUser()
   const [open, setOpen] = useState(false);
+  const [openW, setOpenW] = useState(false);
+
   const pathname = usePathname();
   const isSearchResultPage = pathname === "/search-result";
   return (
@@ -42,6 +46,7 @@ const NavBar = () => {
         <Button
           variant={"outline"}
           aria-label={"Open Search"}
+          className={`cursor-pointer`}
           onClick={() => {
             if (isSearchResultPage) return;
             setOpen(true);
@@ -51,8 +56,24 @@ const NavBar = () => {
         </Button>
 
         {/*<ModeToggle />*/}
-        <FolderLike />
+        <Button
+          variant="outline"
+          size="icon"
+          className={`cursor-pointer`}
+          // onMouseEnter={() => setOpenW(true)}
+          onClick={() => {
+            setOpenW(true);
+          }}
+        >
+          <FolderLike />
+        </Button>
         {open && <DogSearchModal open={open} onClose={() => setOpen(false)} />}
+        {openW && (
+          <WishlistSheet
+            wishlistOpen={openW}
+            setWishlistOpen={() => setOpenW(false)}
+          />
+        )}
       </div>
     </Suspense>
   );

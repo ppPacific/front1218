@@ -1,36 +1,91 @@
 "use client";
 
 import React, { useState } from "react";
-import { createBooking } from "@/lib/actions/booking.actions";
 import posthog from "posthog-js";
 import {
   SignedIn,
   SignedOut,
   RedirectToSignIn,
   SignInButton,
+  useUser,
 } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { createVisit } from "@/lib/actions/visit.actions";
+import { addDays, startOfDay } from "date-fns";
 
-const BookVisit = ({ eventId, slug }: { eventId: string; slug: string }) => {
-  const [email, setEmail] = useState("");
+const BookVisit = ({ dogId, slug }: { dogId: string; slug: string }) => {
+  const { user } = useUser();
+  const curr = startOfDay(new Date());
+  const today = addDays(curr, 1);
+  const maxDate = addDays(today, 13);
+  const [email, setEmail] = useState(
+    user?.primaryEmailAddress?.emailAddress ?? "",
+  );
   const [submitted, setSubmitted] = useState(false);
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
-
+  const [chosenDate, setDate] = React.useState<Date>(today);
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const { success } = await createBooking({ eventId, slug, email });
-
-    if (success) {
-      setSubmitted(true);
-      posthog.capture("event_booked", { eventId, slug, email });
-    } else {
-      console.error("Booking creation failed");
-      posthog.captureException("Booking creation failed");
+    if (!email.trim()) {
+      console.error("Email is required");
+      return;
     }
+
+    if (!chosenDate) {
+      console.error("Visit date is required");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const { success } = await createVisit({
+        dogId,
+        slug,
+        email: email.trim(),
+        chosenDate,
+      });
+
+      console.log("createVisit result", {
+        dogId,
+        slug,
+        email: email.trim(),
+        chosenDate,
+      });
+
+      if (success) {
+        setSubmitted(true);
+        posthog.capture("visit_booked", {
+          dogId,
+          slug,
+          email: email.trim(),
+          chosenDate: chosenDate.toISOString(),
+        });
+      } else {
+        console.error("Visit creation failed");
+        posthog.captureException("Visit creation failed");
+      }
+    } catch (error) {
+      console.error("Visit creation failed", error);
+      posthog.captureException(
+        error instanceof Error ? error : new Error("Visit creation failed"),
+      );
+    } finally {
+      setLoading(false);
+    }
+
+    //   const { success } = await createVisit({ dogId, slug, email, chosenDate });
+    //
+    //   if (success) {
+    //     setSubmitted(true);
+    //     posthog.capture("visit_booked", { dogId, slug, email, chosenDate });
+    //   } else {
+    //     console.error("Visit creation failed");
+    //     posthog.captureException("Visit creation failed");
+    //   }
   };
-  console.log(date);
+  console.log(chosenDate);
   return (
     <div id="book-event">
       {submitted ? (
@@ -47,12 +102,18 @@ const BookVisit = ({ eventId, slug }: { eventId: string; slug: string }) => {
               placeholder="Enter your email address"
             />
           </div>
+          <p className={`text-xs italic text-red-500`}>
+            Select a day within the following two weeks to visit {slug}.
+          </p>
           <Calendar
             mode="single"
-            selected={date}
+            selected={chosenDate}
             onSelect={setDate}
             className="rounded-lg border"
-            disabled={(date) => date < new Date()}
+            disabled={{
+              before: today,
+              after: maxDate,
+            }}
           />
           <SignedOut>
             <SignInButton mode={"modal"}>
@@ -66,8 +127,8 @@ const BookVisit = ({ eventId, slug }: { eventId: string; slug: string }) => {
             {/*<p className={"text-md"}>Sign in first to book your spot!</p>*/}
           </SignedOut>
           <SignedIn>
-            <button type="submit" className="button-submit">
-              Submit
+            <button type="submit" className="button-submit" disabled={loading}>
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </SignedIn>
         </form>

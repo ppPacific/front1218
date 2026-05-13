@@ -52,6 +52,7 @@ const handleNativeShare = async () => {
 
 const DogDetails = async ({ params }: { params: Promise<string> }) => {
   const slug = await params;
+
   let dog;
   let urlSrc = `${BASE_URL}/api/dogs/${slug}`;
   if (process.env.NODE_ENV !== "development") {
@@ -117,9 +118,12 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
 
           <Tags tags={featureTag} />
         </div>
-        {/*<WhatsAppShare />*/}
+
         {/*    Right Side - Booking Form */}
         <aside className="booking">
+          <div className={`mb-4`}>
+            <WhatsAppShare slug={slug} />
+          </div>
           <div className="signup-card">
             <h2>Schedule to meet this doggie!</h2>
             {bookings > 0 ? (
@@ -130,7 +134,7 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
               <p className="text-sm">Be the first to book your spot!</p>
             )}
             {/*//TODO: update create visit server actions*/}
-            {/*<BookVisit eventId={_id} slug={slug} />*/}
+            <BookVisit dogId={_id} slug={slug} />
           </div>
         </aside>
       </div>

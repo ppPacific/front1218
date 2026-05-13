@@ -65,7 +65,7 @@ const DogCard = ({
 
             <div className="absolute inset-x-0 bottom-0 flex justify-end p-4 md:hidden">
               <div className="">
-                <h3 className="text-[10rem] font-semibold tracking-wide text-white">
+                <h3 className="text-[clamp(4rem,20vw,6rem)] font-semibold tracking-wide text-white">
                   {name}
                 </h3>
               </div>
