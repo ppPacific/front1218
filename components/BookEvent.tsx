@@ -8,11 +8,15 @@ import {
   SignedOut,
   RedirectToSignIn,
   SignInButton,
+  useUser,
 } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 
 const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
-  const [email, setEmail] = useState("");
+  const { user } = useUser();
+  const [email, setEmail] = useState(
+    user?.primaryEmailAddress?.emailAddress ?? "",
+  );
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {

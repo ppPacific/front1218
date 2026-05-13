@@ -47,13 +47,6 @@ const BookVisit = ({ dogId, slug }: { dogId: string; slug: string }) => {
         chosenDate,
       });
 
-      console.log("createVisit result", {
-        dogId,
-        slug,
-        email: email.trim(),
-        chosenDate,
-      });
-
       if (success) {
         setSubmitted(true);
         posthog.capture("visit_booked", {
@@ -74,18 +67,8 @@ const BookVisit = ({ dogId, slug }: { dogId: string; slug: string }) => {
     } finally {
       setLoading(false);
     }
-
-    //   const { success } = await createVisit({ dogId, slug, email, chosenDate });
-    //
-    //   if (success) {
-    //     setSubmitted(true);
-    //     posthog.capture("visit_booked", { dogId, slug, email, chosenDate });
-    //   } else {
-    //     console.error("Visit creation failed");
-    //     posthog.captureException("Visit creation failed");
-    //   }
   };
-  console.log(chosenDate);
+
   return (
     <div id="book-event">
       {submitted ? (
@@ -102,19 +85,21 @@ const BookVisit = ({ dogId, slug }: { dogId: string; slug: string }) => {
               placeholder="Enter your email address"
             />
           </div>
-          <p className={`text-xs italic text-red-500`}>
-            Select a day within the following two weeks to visit {slug}.
-          </p>
-          <Calendar
-            mode="single"
-            selected={chosenDate}
-            onSelect={setDate}
-            className="rounded-lg border"
-            disabled={{
-              before: today,
-              after: maxDate,
-            }}
-          />
+          <SignedIn>
+            <p className={`text-xs italic text-red-500`}>
+              Select a day within the following two weeks to visit {slug}.
+            </p>
+            <Calendar
+              mode="single"
+              selected={chosenDate}
+              onSelect={setDate}
+              className="rounded-lg border"
+              disabled={{
+                before: today,
+                after: maxDate,
+              }}
+            />
+          </SignedIn>
           <SignedOut>
             <SignInButton mode={"modal"}>
               <Button
