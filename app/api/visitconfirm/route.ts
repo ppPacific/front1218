@@ -12,6 +12,7 @@ export const { POST } = serve<InitialData>(async (context) => {
 
   // Confirm Email
   await context.run("visit-confirmed", async () => {
+    console.log(`running in workflow route`);
     await sendEmail({
       email,
       subject: "Confirmation of visit to the kennel",
