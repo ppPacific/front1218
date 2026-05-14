@@ -11,6 +11,8 @@ import { redirect } from "next/navigation";
 import { workflowClient } from "@/lib/workflow";
 import { PROD_URL } from "@/lib/constants";
 
+const baseUrl =
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : PROD_URL;
 export const createVisit = async ({
   dogId,
   slug,
@@ -36,20 +38,15 @@ export const createVisit = async ({
       `chosendate ${chosenDate} ${chosenDate.toISOString()} ${chosenDate.toDateString()}`,
     );
     await Visit.create({ dogId, email, chosenDate });
-
+    console.log("workflowUrl", `${baseUrl}/api/visitconfirm`);
     try {
       await workflowClient.trigger({
-        url: `${PROD_URL}/api/visitconfirm`,
+        url: `${baseUrl}/api/visitconfirm`,
         body: {
           email,
           chosenDate,
         },
       });
-      // await sendVisitConfirmationEmail({
-      //   to: email,
-      //   slug,
-      //   chosenDate,
-      // });
     } catch (emailError) {
       console.error("visit saved, confirmation email failed", emailError);
     }
