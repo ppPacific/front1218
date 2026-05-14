@@ -128,7 +128,7 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
             <h2>Schedule to meet this doggie!</h2>
             {bookings > 0 ? (
               <p className="text-sm">
-                Join {bookings} people who have already booked their spot!
+                Come and meet {name} before you bring him/her home!
               </p>
             ) : (
               <p className="text-sm">Be the first to book your spot!</p>

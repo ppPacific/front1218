@@ -11,19 +11,6 @@ const qstashClient = new QStashClient({
   token: config.env.upstash.qstashToken,
 });
 
-await qstashClient.publishJSON({
-  api: {
-    name: "email",
-    provider: resend({ token: "<RESEND_TOKEN>" }),
-  },
-  body: {
-    from: "Acme <onboarding@resend.dev>",
-    to: ["delivered@resend.dev"],
-    subject: "Hello World",
-    html: "<p>It works!</p>",
-  },
-});
-
 export const sendEmail = async ({
   email,
   subject,

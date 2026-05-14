@@ -1,4 +1,4 @@
-// app/api/wishlist-dogs/route.ts
+// app/api/wishlist/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import Dog from "@/database/dog.model";
 import connectDB from "@/lib/mongodb";

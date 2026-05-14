@@ -21,7 +21,7 @@ export const createBooking = async ({
   const { userId } = await auth();
 
   const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
-  console.log(`ip ${ip}`);
+
   const { success } = await ratelimit.limit(ip);
   if (!success) return redirect("/too-fast");
   if (!userId) {
