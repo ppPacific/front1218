@@ -11,7 +11,13 @@ type DogSearchModalProps = {
   onClose: () => void;
 };
 
-const categories = ["PUPPY", "SENIOR DOG", "FEATURED", "CALM"];
+const categories = [
+  "PUPPY",
+  "SENIOR DOG",
+  "FEATURED",
+  "CALM",
+  "GOOD WITH KIDS",
+];
 const DogSearchModal = ({ open, onClose }: DogSearchModalProps) => {
   const pathname = usePathname();
   const isSearchResultPage = pathname === "/search-result";

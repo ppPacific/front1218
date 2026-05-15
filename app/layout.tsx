@@ -56,7 +56,12 @@ export default function RootLayout({
                   >
                     <div className={`flex items-center justify-between h-16`}>
                       <div className="flex items-center">
-                        <Link href={`/`}>Dog Rescue - Bring Love Home</Link>
+                        <Link href={`/`}>
+                          Dog Rescue{" "}
+                          <span className={`hidden md:inline`}>
+                            - Bring Love Home
+                          </span>
+                        </Link>
                       </div>
                     </div>
                     <NavBar />

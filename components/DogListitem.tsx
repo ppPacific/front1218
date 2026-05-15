@@ -12,8 +12,9 @@ type WishlistDog = {
   name: string;
   breed?: string;
   image?: { url?: string }[];
+  onClose: () => void;
 };
-const DogListitem = ({ slug, name, breed, image }: WishlistDog) => {
+const DogListitem = ({ slug, name, breed, image, onClose }: WishlistDog) => {
   const { toggleBookmark } = useWishlistContext();
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const DogListitem = ({ slug, name, breed, image }: WishlistDog) => {
     toggleBookmark(slug);
   };
   return (
-    <Link href={`/dogs/${slug}`} className="block">
+    <Link onClick={onClose} href={`/dogs/${slug}`} className="block">
       <div className="flex items-center gap-3 w-full p-4">
         <div className="relative h-24 w-2/5 overflow-hidden rounded-lg bg-muted">
           {image && image.length > 0 && (

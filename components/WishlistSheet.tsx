@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/sheet";
 import { useWishlistContext } from "@/providers/WishlistProvider";
 import DogListitem from "@/components/DogListitem";
+import { Skeleton } from "@/components/ui/skeleton";
+import React from "react";
 
 type WishlistSheetProps = {
   wishlistOpen: boolean;
@@ -22,7 +24,7 @@ export default function WishlistSheet({
     useWishlistContext();
 
   return (
-    <Sheet open={wishlistOpen} onOpenChange={setWishlistOpen}>
+    <Sheet open={wishlistOpen} onOpenChange={() => setWishlistOpen(false)}>
       <SheetContent
         side="right"
         className="flex h-full w-full max-w-sm flex-col p-0"
@@ -45,17 +47,15 @@ export default function WishlistSheet({
 
         <div className="flex-1 overflow-y-auto px-4 py-4">
           {loadingWishlistDogs ? (
-            <div className="space-y-4">
-              <p>Loading...</p>
+            <div className="flex w-full max-w-xs flex-col gap-2">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
             </div>
           ) : wishlistDogs && wishlistDogs.length > 0 ? (
             <div className="space-y-4">
               {wishlistDogs.map((dog) => (
-                <DogListitem
-                  key={dog.slug}
-                  onClick={() => setWishlistOpen(false)}
-                  {...dog}
-                />
+                <DogListitem key={dog.slug} {...dog} />
               ))}
             </div>
           ) : (

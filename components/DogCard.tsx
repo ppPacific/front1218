@@ -35,7 +35,7 @@ const DogCard = ({
           toggleBookmark(slug);
         }}
         className={
-          "absolute left-3 top-3 z-20 inline-flex " +
+          "absolute left-6 top-6 z-20 inline-flex " +
           "h-11 w-11 items-center justify-center rounded-full bg-white/90 shadow-md backdrop-blur transition-all duration-200 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100 md:pointer-events-none md:group-hover:pointer-events-auto md:group-focus-within:pointer-events-auto"
         }
       >
