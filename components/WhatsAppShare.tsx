@@ -2,6 +2,11 @@
 import React from "react";
 import { PROD_URL } from "@/lib/constants";
 import { Send } from "lucide-react";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 
 const WhatsAppShare = ({ slug }: { slug: string }) => {
   const shareToWhatsApp = (slug) => {
@@ -18,12 +23,19 @@ const WhatsAppShare = ({ slug }: { slug: string }) => {
   };
 
   return (
-    <span>
-      <Send
-        className={`cursor-pointer`}
-        onClick={() => shareToWhatsApp(slug)}
-      />
-    </span>
+    <Tooltip>
+      <TooltipTrigger>
+        <span>
+          <Send
+            className={`cursor-pointer`}
+            onClick={() => shareToWhatsApp(slug)}
+          />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>Share to Whatsapp</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
 export default WhatsAppShare;

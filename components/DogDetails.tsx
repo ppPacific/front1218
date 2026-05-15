@@ -17,6 +17,7 @@ import { IDog } from "@/database/dog.model";
 import Link from "next/link";
 import BookVisit from "@/components/BookVisit";
 import WhatsAppShare from "@/components/WhatsAppShare";
+import CopyLink from "@/components/CopyLink";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -121,8 +122,9 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
 
         {/*    Right Side - Booking Form */}
         <aside className="booking">
-          <div className={`mb-4`}>
+          <div className={`mb-4 flex gap-x-6`}>
             <WhatsAppShare slug={slug} />
+            <CopyLink slug={slug} />
           </div>
           <div className="signup-card">
             <h2>Schedule to meet this doggie!</h2>

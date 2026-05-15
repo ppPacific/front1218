@@ -10,6 +10,7 @@ import { WishlistProvider } from "@/providers/WishlistProvider";
 import { PostHogProvider } from "@/providers/PostHogProvider";
 import { Toaster } from "@/components/ui/sonner";
 import Link from "next/link";
+import { TooltipProvider } from "@/components/ui/tooltip";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -49,53 +50,55 @@ export default function RootLayout({
             {/*  disableTransitionOnChange*/}
             {/*>*/}
             <WishlistProvider>
-              <div className="min-h-screen">
-                <header className="sticky top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
-                  <div
-                    className={`max-w-7xl mx-auto px-4 flex justify-between`}
-                  >
-                    <div className={`flex items-center justify-between h-16`}>
-                      <div className="flex items-center">
-                        <Link href={`/`}>
-                          Dog Rescue{" "}
-                          <span className={`hidden md:inline`}>
-                            - Bring Love Home
-                          </span>
-                        </Link>
+              <TooltipProvider>
+                <div className="min-h-screen">
+                  <header className="sticky top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
+                    <div
+                      className={`max-w-7xl mx-auto px-4 flex justify-between`}
+                    >
+                      <div className={`flex items-center justify-between h-16`}>
+                        <div className="flex items-center">
+                          <Link href={`/`}>
+                            Dog Rescue{" "}
+                            <span className={`hidden md:inline`}>
+                              - Bring Love Home
+                            </span>
+                          </Link>
+                        </div>
+                      </div>
+                      <NavBar />
+                      {/*desktop nav*/}
+                      {/*mobile nav*/}
+                    </div>
+                  </header>
+                  <div className={"absolute inset-0 top-0 z-[-1] min-h-screen"}>
+                    <LightRays
+                      raysOrigin="top-center-offset"
+                      raysColor="#5dfeca"
+                      raysSpeed={0.5}
+                      lightSpread={0.9}
+                      rayLength={1.4}
+                      followMouse={true}
+                      mouseInfluence={0.02}
+                      noiseAmount={0.0}
+                      distortion={0.01}
+                    ></LightRays>
+                  </div>
+                  <main className={`py-8`}>
+                    <div className="max-w-5xl mx-auto px-4">
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        {/*<div className="hidden lg:block lg:col-span-3">*/}
+                        {/*  <p>collapsible sidebar</p>*/}
+                        {/*</div>*/}
+                        <div className="lg:col-span-12">{children}</div>
                       </div>
                     </div>
-                    <NavBar />
-                    {/*desktop nav*/}
-                    {/*mobile nav*/}
-                  </div>
-                </header>
-                <div className={"absolute inset-0 top-0 z-[-1] min-h-screen"}>
-                  <LightRays
-                    raysOrigin="top-center-offset"
-                    raysColor="#5dfeca"
-                    raysSpeed={0.5}
-                    lightSpread={0.9}
-                    rayLength={1.4}
-                    followMouse={true}
-                    mouseInfluence={0.02}
-                    noiseAmount={0.0}
-                    distortion={0.01}
-                  ></LightRays>
+                  </main>
                 </div>
-                <main className={`py-8`}>
-                  <div className="max-w-5xl mx-auto px-4">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                      {/*<div className="hidden lg:block lg:col-span-3">*/}
-                      {/*  <p>collapsible sidebar</p>*/}
-                      {/*</div>*/}
-                      <div className="lg:col-span-12">{children}</div>
-                    </div>
-                  </div>
-                </main>
-              </div>
+              </TooltipProvider>
             </WishlistProvider>
             {/*</ThemeProvider>*/}
-            <Toaster />
+            <Toaster visibleToasts={1} />
           </PostHogProvider>
         </body>
       </html>
