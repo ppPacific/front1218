@@ -3,22 +3,20 @@ import { sendEmail } from "@/lib/workflow";
 
 type InitialData = {
   email: string;
-  chosenDate: string;
   slug: string;
   //fullName: string;
 };
 
 export const { POST } = serve<InitialData>(async (context) => {
-  const { email, chosenDate, slug } = context.requestPayload;
-  const visitDate = new Date(chosenDate);
+  const { email, slug } = context.requestPayload;
+  //const visitDate = new Date(chosenDate);
   // Confirm Email
-  await context.run("visit-confirmed", async () => {
+  await context.run("booking-confirmed", async () => {
     await sendEmail({
       email,
-      subject: "Your visit is confirmed. Dog Rescue - Bring Love Home",
-      message: `Thank you for scheduling a visit to meet ${slug}! <br/> <br/>
-Please come on ${visitDate.toDateString()} 
-from 10:00 AM to 17:00 PM and approach the staff for arrangements. <br/><br/>
+      subject: "Your booking is confirmed. Dog Rescue - Bring Love Home",
+      message: `Thank you for booking ${slug}! <br/> <br/>
+We are happy that you are interested in joining this event. Please attend the event accordingly. <br/><br/>
 For further enquiries, please contact below support email for help. Thank you so much!<br/><br/>
 Dog Rescue - Bring Love Home <br/>
 contact@dogslifelove.dog`,

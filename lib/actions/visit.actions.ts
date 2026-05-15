@@ -34,15 +34,13 @@ export const createVisit = async ({
   }
   try {
     await connectDB();
-    console.log(
-      `chosendate ${chosenDate} ${chosenDate.toISOString()} ${chosenDate.toDateString()}`,
-    );
     await Visit.create({ dogId, email, chosenDate });
     try {
       await workflowClient.trigger({
         url: `${baseUrl}/api/visitconfirm`,
         body: {
           email,
+          slug: slug,
           chosenDate: chosenDate.toISOString(),
         },
       });
