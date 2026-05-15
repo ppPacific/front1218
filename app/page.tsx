@@ -35,14 +35,15 @@ const Home = async () => {
               ))}
           </ul>
           <div className={"flex mx-auto justify-center"}>
-            <Link href={"/dogs"}>
-              <Button
-                variant={"outline"}
-                className="shadow-md text-xs sm:text-sm sm:h-10 px-2 sm:px-4 cursor-pointer"
-              >
-                View More
-              </Button>
-            </Link>
+            <h2 className={`text-3xl`}>Available for Adoption</h2>
+            {/*<Link href={"/dogs"}>*/}
+            {/*  <Button*/}
+            {/*    variant={"outline"}*/}
+            {/*    className="shadow-md text-xs sm:text-sm sm:h-10 px-2 sm:px-4 cursor-pointer"*/}
+            {/*  >*/}
+            {/*    View More*/}
+            {/*  </Button>*/}
+            {/*</Link>*/}
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {dogs.slice(0, 6).map((dog) => (
