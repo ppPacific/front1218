@@ -49,6 +49,9 @@ export const createBooking = async ({
     return { success: true };
   } catch (e) {
     console.error("create booking failed", e);
-    return { success: false };
+    return {
+      success: false,
+      message: "This email has been used for booking already",
+    };
   }
 };

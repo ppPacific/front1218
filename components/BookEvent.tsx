@@ -18,6 +18,7 @@ const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
     user?.primaryEmailAddress?.emailAddress ?? "",
   );
   const [submitted, setSubmitted] = useState(false);
+  const [errormsg, setErrormsg] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,9 +28,13 @@ const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
     if (success) {
       setSubmitted(true);
       posthog.capture("event_booked", { eventId, slug, email });
+      setErrormsg("");
     } else {
       console.error("Booking creation failed");
       posthog.captureException("Booking creation failed");
+      setErrormsg(
+        "This email have been used for booking already. Please use another valid email or try later.",
+      );
     }
   };
 
@@ -48,6 +53,11 @@ const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
               id="email"
               placeholder="Enter your email address"
             />
+            {errormsg && errormsg.length > 0 ? (
+              <span className={`text-[0.8rem] text-red-500`}>{errormsg}</span>
+            ) : (
+              <></>
+            )}
           </div>
           <SignedOut>
             <SignInButton mode={"modal"}>

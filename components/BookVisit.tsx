@@ -23,6 +23,7 @@ const BookVisit = ({ dogId, slug }: { dogId: string; slug: string }) => {
     user?.primaryEmailAddress?.emailAddress ?? "",
   );
   const [submitted, setSubmitted] = useState(false);
+  const [errormsg, setErrormsg] = useState("");
   const [chosenDate, setDate] = React.useState<Date>(today);
   const [loading, setLoading] = useState(false);
   const handleSubmit = async (e: React.FormEvent) => {
@@ -55,9 +56,13 @@ const BookVisit = ({ dogId, slug }: { dogId: string; slug: string }) => {
           email: email.trim(),
           chosenDate: chosenDate.toISOString(),
         });
+        setErrormsg("");
       } else {
         console.error("Visit creation failed");
         posthog.captureException("Visit creation failed");
+        setErrormsg(
+          "You might have booked the same date, or this email has been used for booking already. Please try another date or valid email.",
+        );
       }
     } catch (error) {
       console.error("Visit creation failed", error);
@@ -84,6 +89,11 @@ const BookVisit = ({ dogId, slug }: { dogId: string; slug: string }) => {
               id="email"
               placeholder="Enter your email address"
             />
+            {errormsg && errormsg.length > 0 ? (
+              <span className={`text-[0.8rem] text-red-500`}>{errormsg}</span>
+            ) : (
+              <></>
+            )}
           </div>
           <SignedIn>
             <p className={`text-xs italic text-red-500`}>
