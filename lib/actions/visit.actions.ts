@@ -38,7 +38,6 @@ export const createVisit = async ({
       `chosendate ${chosenDate} ${chosenDate.toISOString()} ${chosenDate.toDateString()}`,
     );
     await Visit.create({ dogId, email, chosenDate });
-    console.log("workflowUrl", `${baseUrl}/api/visitconfirm`);
     try {
       await workflowClient.trigger({
         url: `${baseUrl}/api/visitconfirm`,
