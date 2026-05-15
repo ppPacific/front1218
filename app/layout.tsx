@@ -24,7 +24,7 @@ const josefin = Josefin_Sans({
   variable: "--font-josefin",
 });
 export const metadata: Metadata = {
-  title: "bubbletea.com",
+  title: "Bring Love Home",
   description: "Adoptions save lives",
 };
 
