@@ -43,7 +43,7 @@ export const createVisit = async ({
         url: `${baseUrl}/api/visitconfirm`,
         body: {
           email,
-          chosenDate,
+          chosenDate: chosenDate.toISOString(),
         },
       });
     } catch (emailError) {
