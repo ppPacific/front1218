@@ -24,7 +24,7 @@ export default function WishlistSheet({
     useWishlistContext();
 
   return (
-    <Sheet open={wishlistOpen} onOpenChange={() => setWishlistOpen(false)}>
+    <Sheet open={wishlistOpen} onOpenChange={setWishlistOpen}>
       <SheetContent
         side="right"
         className="flex h-full w-full max-w-sm flex-col p-0"
@@ -55,7 +55,11 @@ export default function WishlistSheet({
           ) : wishlistDogs && wishlistDogs.length > 0 ? (
             <div className="space-y-4">
               {wishlistDogs.map((dog) => (
-                <DogListitem key={dog.slug} {...dog} />
+                <DogListitem
+                  onClose={() => setWishlistOpen(false)}
+                  key={dog.slug}
+                  {...dog}
+                />
               ))}
             </div>
           ) : (

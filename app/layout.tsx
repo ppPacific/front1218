@@ -98,7 +98,7 @@ export default function RootLayout({
               </TooltipProvider>
             </WishlistProvider>
             {/*</ThemeProvider>*/}
-            <Toaster visibleToasts={1} />
+            <Toaster visibleToasts={20} expand={true} />
           </PostHogProvider>
         </body>
       </html>

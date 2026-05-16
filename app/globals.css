@@ -293,7 +293,7 @@
   width: 100%;
 }
 .modal__button{
-  @apply rounded-none;
+  @apply rounded-none md:px-[3.2rem];
 
   background: #000;
   border: none;
@@ -303,7 +303,6 @@
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: .2rem;
-  padding: 0 3.2rem;
   text-transform: uppercase;
 }
 .modal__suggestion-block {
