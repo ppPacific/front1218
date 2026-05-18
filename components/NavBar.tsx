@@ -108,7 +108,7 @@ const NavBar = () => {
               </Link>
 
               {/*<Link*/}
-              {/*  href={"/about"}*/}
+              {/*  href={"/aboutdeveloper"}*/}
               {/*  onClick={() => setOpenMenu(false)}*/}
               {/*  className="rounded-md px-8 text-base font-light transition hover:bg-muted"*/}
               {/*>*/}
