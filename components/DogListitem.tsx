@@ -37,7 +37,7 @@ const DogListitem = ({ slug, name, breed, image, onClose }: WishlistDog) => {
           )}
         </div>
         <div className="w-2/5 min-w-0">
-          <h2 className="text-sm font-semibold tracking-wide">{name}</h2>
+          <h2 className="text-sm font-light tracking-wide">{name}</h2>
         </div>
         <div className={`w-1/5`}>
           <button

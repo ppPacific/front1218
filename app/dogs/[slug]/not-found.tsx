@@ -15,10 +15,10 @@ export default function NotFound() {
             {/* MESSAGE */}
             <div className="space-y-2">
               <h1 className="text-2xl font-bold tracking-tight">
-                Event not found
+                Dog not found
               </h1>
               <p className="text-muted-foreground">
-                The event you're looking for doesn't exist.
+                The dog you're looking for doesn't exist.
               </p>
             </div>
 

@@ -157,11 +157,22 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
             </CardHeader>
             <CardContent className="text-sm">
               <section className="flex-col-gap-2">
-                <p>Age: {age}</p>
-                <p>Size: {size}</p>
-                <p>Kennel location: {kennelLocation}</p>
-                <p>Breed: {breed}</p>
-                <p>Sex: {sex}</p>
+                <p>
+                  Age: <span className={`font-light`}>{age}</span>
+                </p>
+                <p>
+                  Size: <span className={`font-light`}>{size}</span>
+                </p>
+                <p>
+                  Kennel location:{" "}
+                  <span className={`font-light`}>{kennelLocation}</span>
+                </p>
+                <p>
+                  Breed: <span className={`font-light`}>{breed}</span>
+                </p>
+                <p>
+                  Sex: <span className={`font-light`}>{sex}</span>
+                </p>
               </section>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4"></div>
               <br />

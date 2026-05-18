@@ -32,7 +32,7 @@ export default function WishlistSheet({
         // onMouseLeave={setWishlistOpen}
       >
         <SheetHeader className="flex flex-row items-center justify-between border-b pb-4">
-          <SheetTitle>Wishlist</SheetTitle>
+          <SheetTitle className={`px-8 font-light`}>Wishlist</SheetTitle>
 
           <SheetClose asChild>
             {/*<button*/}

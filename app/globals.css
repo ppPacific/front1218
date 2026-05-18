@@ -293,13 +293,12 @@
   width: 100%;
 }
 .modal__button{
-  @apply rounded-none md:px-[3.2rem];
+  @apply rounded-none py-[1.4rem] md:px-[3.2rem];
 
   background: #000;
   border: none;
   color: #fff;
   cursor: pointer;
-  /*font-family: Brilliant Cut Pro Regular, sans-serif;*/
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: .2rem;

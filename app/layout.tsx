@@ -11,6 +11,7 @@ import { PostHogProvider } from "@/providers/PostHogProvider";
 import { Toaster } from "@/components/ui/sonner";
 import Link from "next/link";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Footer from "@/components/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -51,7 +52,7 @@ export default function RootLayout({
             {/*>*/}
             <WishlistProvider>
               <TooltipProvider>
-                <div className="min-h-screen">
+                <div className="min-h-screen flex flex-col">
                   <header className="sticky top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
                     <div
                       className={`max-w-7xl mx-auto px-4 flex justify-between`}
@@ -71,7 +72,7 @@ export default function RootLayout({
                       {/*mobile nav*/}
                     </div>
                   </header>
-                  <div className={"absolute inset-0 top-0 z-[-1] min-h-screen"}>
+                  <div className={"fixed inset-0 -z-10 pointer-events-none"}>
                     <LightRays
                       raysOrigin="top-center-offset"
                       raysColor="#5dfeca"
@@ -84,7 +85,7 @@ export default function RootLayout({
                       distortion={0.01}
                     ></LightRays>
                   </div>
-                  <main className={`py-8`}>
+                  <main className={`flex-1 py-8`}>
                     <div className="max-w-5xl mx-auto px-4">
                       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                         {/*<div className="hidden lg:block lg:col-span-3">*/}
@@ -94,6 +95,9 @@ export default function RootLayout({
                       </div>
                     </div>
                   </main>
+                  <footer className="w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
+                    <Footer />
+                  </footer>
                 </div>
               </TooltipProvider>
             </WishlistProvider>

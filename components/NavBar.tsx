@@ -10,16 +10,22 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
-import { Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import DogSearchModal from "@/components/DogSearchModal";
 import { usePathname } from "next/navigation";
-import { WishlistDrawer } from "@/components/WishlistDrawer";
 import WishlistSheet from "@/components/WishlistSheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import Link from "next/link";
 const NavBar = () => {
   // const user = await currentUser()
   const [open, setOpen] = useState(false);
   const [openW, setOpenW] = useState(false);
-
+  const [openMenu, setOpenMenu] = useState(false);
   const pathname = usePathname();
   const isSearchResultPage = pathname === "/search-result";
   return (
@@ -67,6 +73,15 @@ const NavBar = () => {
         >
           <FolderLike />
         </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          aria-label="Open menu"
+          className="cursor-pointer"
+          onClick={() => setOpenMenu(true)}
+        >
+          <Menu className="h-5 w-5" />
+        </Button>
         {open && <DogSearchModal open={open} onClose={() => setOpen(false)} />}
         {openW && (
           <WishlistSheet
@@ -74,6 +89,34 @@ const NavBar = () => {
             setWishlistOpen={() => setOpenW(false)}
           />
         )}
+        <Sheet open={openMenu} onOpenChange={setOpenMenu}>
+          <SheetContent
+            side="right"
+            className="w-[250px] border-l bg-background px-4 max-w-xs"
+          >
+            <SheetHeader className="border-b pb-4">
+              <SheetTitle className={`font-light px-4`}>Menu</SheetTitle>
+            </SheetHeader>
+
+            <nav className="mt-6 flex flex-col gap-4">
+              <Link
+                href={"/donation"}
+                onClick={() => setOpenMenu(false)}
+                className="rounded-md px-8 font-light text-base transition hover:bg-muted"
+              >
+                Donation
+              </Link>
+
+              {/*<Link*/}
+              {/*  href={"/about"}*/}
+              {/*  onClick={() => setOpenMenu(false)}*/}
+              {/*  className="rounded-md px-8 text-base font-light transition hover:bg-muted"*/}
+              {/*>*/}
+              {/*  About*/}
+              {/*</Link>*/}
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
     </Suspense>
   );
