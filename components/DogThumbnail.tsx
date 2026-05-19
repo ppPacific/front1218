@@ -21,6 +21,26 @@ const DogThumbnail = ({ _id, slug, name, featureTag, image }: Props) => {
     <div className="group relative overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 transition-all duration-300 hover:shadow-xl">
       <Link href={`/dogs/${slug}`} className="block">
         <div className="relative md:grid md:min-h-[180px]">
+          <button
+            type="button"
+            aria-label={bookmarked ? "Remove from wishlist" : "Add to wishlist"}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleBookmark(slug);
+            }}
+            className={
+              "absolute left-3 top-3 z-20 inline-flex " +
+              "h-11 w-11 items-center justify-center rounded-full bg-white/90 shadow-md backdrop-blur transition-all duration-200 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100 md:pointer-events-none md:group-hover:pointer-events-auto md:group-focus-within:pointer-events-auto"
+            }
+          >
+            <Heart
+              className={`h-4 w-4 transition-colors ${
+                bookmarked ? "fill-rose-500 text-rose-500" : "text-zinc-600"
+              }`}
+              strokeWidth={2}
+            />
+          </button>
           <div className="relative md:aspect-auto md:h-full">
             {image && image.length > 0 && (
               <Image

@@ -51,7 +51,7 @@ const DogCard = ({
           }
         >
           <Heart
-            className={`h-5 w-5 transition-colors ${
+            className={`h-4 w-4 transition-colors ${
               bookmarked ? "fill-rose-500 text-rose-500" : "text-zinc-600"
             }`}
             strokeWidth={2}
