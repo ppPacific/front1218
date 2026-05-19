@@ -18,6 +18,7 @@ import Link from "next/link";
 import BookVisit from "@/components/BookVisit";
 import WhatsAppShare from "@/components/WhatsAppShare";
 import CopyLink from "@/components/CopyLink";
+import AddToWish from "@/components/AddToWish";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -34,22 +35,6 @@ const Tags = ({ tags }: { tags: string[] }) => (
     ))}
   </div>
 );
-const handleNativeShare = async () => {
-  if (navigator.share) {
-    try {
-      await navigator.share({
-        title: "Check this out!",
-        url: window.location.href,
-      });
-    } catch (err) {
-      console.error("Error sharing:", err);
-    }
-  } else {
-    // Fallback to the link method above if the browser doesn't support Web Share
-    const whatsappUrl = `https://wa.me{encodeURIComponent(window.location.href)}`;
-    window.open(whatsappUrl, "_blank");
-  }
-};
 
 const DogDetails = async ({ params }: { params: Promise<string> }) => {
   const slug = await params;
@@ -125,6 +110,7 @@ const DogDetails = async ({ params }: { params: Promise<string> }) => {
           <div className={`mb-4 flex gap-x-6`}>
             <WhatsAppShare slug={slug} />
             <CopyLink slug={slug} />
+            <AddToWish slug={slug} />
           </div>
           <div className="signup-card">
             <h2>Schedule to meet this doggie!</h2>
