@@ -28,7 +28,7 @@ type WishlistContextType = {
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const WishlistContext = createContext<WishlistContextType | null>(null);
-const MAX_WISHLIST_ITEMS = 5;
+const MAX_WISHLIST_ITEMS = 10;
 const STORAGE_KEY = "kennel:guest_wishlist";
 
 export function WishlistProvider({ children }: { children: React.ReactNode }) {
