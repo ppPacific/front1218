@@ -79,7 +79,7 @@ const BookVisit = ({ dogId, slug }: { dogId: string; slug: string }) => {
       {submitted ? (
         <p className="text-sm">
           Thank you for signing up! You will receive an confirmation email
-          shortly. If not, please contact contact@dogslovelife.dog .
+          shortly. If not, please contact contact@dogslifelove.dog .
         </p>
       ) : (
         <form onSubmit={handleSubmit}>
