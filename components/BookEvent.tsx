@@ -41,7 +41,10 @@ const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
   return (
     <div id="book-event">
       {submitted ? (
-        <p className="text-sm">Thank you for signing up!</p>
+        <p className="text-sm">
+          Thank you for signing up! You will receive an confirmation email
+          shortly. If not, please contact contact@dogslovelife.dog .
+        </p>
       ) : (
         <form onSubmit={handleSubmit}>
           <div>
