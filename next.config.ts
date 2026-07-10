@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
+//WHITELIST SOME URLs
 const nextConfig: NextConfig = {
   /* config options here */
   typescript: {
