@@ -28,6 +28,12 @@ const NavBar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const pathname = usePathname();
   const isSearchResultPage = pathname === "/search-result";
+
+  const mobileNavItemClass = (active: boolean) =>
+    `flex flex-col items-center justify-center gap-1 text-xs transition ${
+      active ? "text-primary" : "text-muted-foreground"
+    }`;
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className={`flex items-center justify-end gap-x-2`}>
