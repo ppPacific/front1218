@@ -6,11 +6,12 @@ import Link from "next/link";
 import { IEvent } from "@/database";
 import EventCard from "@/components/EventCard";
 import { getHomePageData } from "@/lib/data/home";
+import TagLoading from "@/components/TagLoading";
 const Home = async () => {
   const { events, dogs } = await getHomePageData();
 
   return (
-    <Suspense fallback={<p>loading...</p>}>
+    <Suspense fallback={<TagLoading />}>
       <section>
         <div className="mt-[-70]">
           <Image
