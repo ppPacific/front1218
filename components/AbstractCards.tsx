@@ -8,42 +8,42 @@ gsap.registerPlugin(ScrollTrigger);
 
 const CARDS = [
   {
-    img: "/assets/1.png",
+    img: "https://res.cloudinary.com/dnpseycnv/image/upload/v1777981001/WhatsApp_Image_2026-05-05_at_7.34.23_PM_llong9.jpg",
     pos: "h-[15vw] w-[13vw] max-md:h-[32vw] max-md:w-[26vw] top-[10%] left-[10%] max-md:top-[8%] max-md:left-[6%]",
     bg: "bg-red-500",
   },
   {
-    img: "/assets/3.png",
+    img: "https://res.cloudinary.com/dnpseycnv/image/upload/v1776622352/dog-mercury-1_x544tt.jpg",
     pos: "h-[13vw] w-[10vw] max-md:h-[23vw] max-md:w-[18vw] top-[20%] left-[5%] max-md:top-[14%] max-md:left-[3%]",
     bg: "bg-blue-500",
   },
   {
-    img: "/assets/2.png",
+    img: "https://res.cloudinary.com/dnpseycnv/image/upload/v1777981003/WhatsApp_Image_2026-05-05_at_7.34.23_PM_3_yzr4e0.jpg",
     pos: "h-[20vw] w-[17vw] max-md:h-[33vw] max-md:w-[28vw] top-[70%] left-[0%] max-md:top-[56%] max-md:left-[0%]",
     bg: "bg-green-500",
   },
   {
-    img: "/assets/4.png",
+    img: "https://res.cloudinary.com/dnpseycnv/image/upload/v1776622864/dog-rocky-1_rixlcm.jpg",
     pos: "h-[13vw] w-[17vw] max-md:h-[25vw] max-md:w-[28vw] top-[75%] left-[20%] max-md:top-[65%] max-md:left-[16%]",
     bg: "bg-yellow-500",
   },
   {
-    img: "/assets/5.png",
+    img: "https://res.cloudinary.com/dnpseycnv/image/upload/v1776622353/dog-maria-1_q9riqc.jpg",
     pos: "h-[12vw] w-[10vw] max-md:h-[25vw] max-md:w-[18vw] top-[10%] left-[55%] max-md:top-[8%] max-md:left-[50%]",
     bg: "bg-yellow-500",
   },
   {
-    img: "/assets/8.png",
+    img: "https://res.cloudinary.com/dnpseycnv/image/upload/v1776622859/dog-milo-1_km3xuy.jpg",
     pos: "h-[17vw] w-[17vw] max-md:h-[33vw] max-md:w-[29vw] top-[20%] right-[1%] max-md:top-[13%] max-md:right-[2%]",
     bg: "bg-blue-500",
   },
   {
-    img: "/assets/6.png",
+    img: "https://res.cloudinary.com/dnpseycnv/image/upload/v1776622849/dog-joffery-1_zhuxhg.jpg",
     pos: "h-[19vw] w-[18vw] max-md:h-[34vw] max-md:w-[30vw] top-[70%] right-[5%] max-md:top-[56%] max-md:right-[6%]",
     bg: "bg-green-500",
   },
   {
-    img: "/assets/7.png",
+    img: "https://res.cloudinary.com/dnpseycnv/image/upload/v1776622353/dog-cloe-1_tarrgz.jpg",
     pos: "h-[15vw] w-[14vw] max-md:h-[26vw] max-md:w-[23vw] top-[80%] right-[15%] max-md:top-[70%] max-md:right-[11%]",
     bg: "bg-red-500",
   },
@@ -114,21 +114,21 @@ const AbstractCards = () => {
   return (
     <section
       ref={sectionRef}
-      className="h-screen w-full flex flex-col items-center justify-center bg-[#fcf5e2] text-[#1b1b1b] overflow-x-clip relative"
+      className="h-screen w-full flex flex-col items-center justify-center text-[#1b1b1b] overflow-x-clip relative"
     >
-      <h2 className="max-md:text-[14vw] text-center text-[9vw] font-semibold leading-[.8] tracking-tight">
-        new to <br /> wolfdev?
+      <h2 className="max-md:text-[14vw] text-center text-[6vw] font-semibold leading-[.8] tracking-tight">
+        Be a <br /> dog's hero
       </h2>
 
       <p className="mt-10 max-md:mt-8 max-md:w-[85vw] max-md:text-[3.7vw] w-[40%] text-center text-[1.3vw] leading-[1.3] tracking-tight">
-        wolfdev is a channel that breaks down advanced web animation into simple
-        steps. Discover tips, examples, and insights to help make your web
-        projects more interactive and visually engaging.
+        We rescue, heal, and love homeless dogs, guiding them safely from our
+        doors into the warmth of your forever family.
       </p>
 
       <button
         type="button"
-        className="mt-10 max-md:mt-8 max-md:px-8 max-md:py-3 max-md:text-[4vw] rounded-full bg-[#1b1b1b] px-6 py-2 text-1.25vw] font-semibold text-white"
+        className="shadow-md mt-10 max-md:mt-8 max-md:px-8 max-md:py-3 max-md:text-[4vw] rounded-full px-6 py-2 text-1.25vw] font-semibold text-white bg-[#1b1b1b] hover:bg-sky-700 transition-colors duration-300 ease-in-out"
+        // className="shadow-md text-xs sm:text-sm sm:h-10 px-2 sm:px-4 cursor-pointer"
       >
         Learn more
       </button>

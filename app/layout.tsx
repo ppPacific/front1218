@@ -12,6 +12,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Link from "next/link";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Footer from "@/components/Footer";
+import LenisSmoothScroll from "@/components/SmoothScroll/Lenis";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <LenisSmoothScroll />
           <PostHogProvider>
             {/*<ThemeProvider*/}
             {/*  attribute="class"*/}

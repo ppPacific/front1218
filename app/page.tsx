@@ -7,6 +7,7 @@ import { IEvent } from "@/database";
 import EventCard from "@/components/EventCard";
 import { getHomePageData } from "@/lib/data/home";
 import TagLoading from "@/components/TagLoading";
+import AbstractCards from "@/components/AbstractCards";
 const Home = async () => {
   const { events, dogs } = await getHomePageData();
 
@@ -35,22 +36,15 @@ const Home = async () => {
                 </li>
               ))}
           </ul>
-          <div className={"flex mx-auto justify-center"}>
-            <h2 className={`text-3xl`}>Available for Adoption</h2>
-            {/*<Link href={"/dogs"}>*/}
-            {/*  <Button*/}
-            {/*    variant={"outline"}*/}
-            {/*    className="shadow-md text-xs sm:text-sm sm:h-10 px-2 sm:px-4 cursor-pointer"*/}
-            {/*  >*/}
-            {/*    View More*/}
-            {/*  </Button>*/}
-            {/*</Link>*/}
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {dogs.slice(0, 6).map((dog) => (
-              <DogCard key={dog.name} {...dog} />
-            ))}
-          </div>
+        </div>
+        <AbstractCards />
+        <div className={"mt-30 flex mx-auto justify-center"}>
+          <h2 className={`text-3xl`}>Available for Adoption</h2>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {dogs.slice(0, 6).map((dog) => (
+            <DogCard key={dog.name} {...dog} />
+          ))}
         </div>
       </section>
     </Suspense>
