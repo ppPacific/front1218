@@ -2,7 +2,7 @@
 import React, { Suspense, useMemo, useState } from "react";
 
 const Page = () => {
-  return <></>;
+  return <h1>about!</h1>;
 };
 
 export default Page;
