@@ -1,10 +1,10 @@
 ## Kennel website
 # Description
 
--Demo site built for a dog kennel. 
--Next.js application with TypeScript, Tailwind CSS, Clerk authentication, MongoDB/Mongoose. 
--Built a booking system with email confirmation(background automation). 
--Also integrated Stripe payment for donation, and used rate limiting to protect api server. 
+-Demo site built for a dog kennel. <br>
+-Next.js application with TypeScript, Tailwind CSS, Clerk authentication, MongoDB/Mongoose. <br>
+-Built a booking system with email confirmation(background automation). <br>
+-Also integrated Stripe payment for donation, and used rate limiting to protect api server. <br>
 -Deployed on Vercel.
 
 ## Learn More
