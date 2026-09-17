@@ -116,7 +116,10 @@ const AbstractCards = () => {
       ref={sectionRef}
       className="h-screen w-full flex flex-col items-center justify-center text-[#1b1b1b] overflow-x-clip relative"
     >
-      <h2 className="max-md:text-[14vw] text-center text-[6vw] font-semibold leading-[.8] tracking-tight">
+      <h2
+        className="py-4 bg-gradient-to-r from-gray-800/50 to-gray-800
+      bg-clip-text text-transparent max-md:text-[14vw] text-center text-[6vw] font-semibold leading-[.8] tracking-tight"
+      >
         Be a <br /> dog's hero
       </h2>
 
@@ -127,7 +130,7 @@ const AbstractCards = () => {
 
       <button
         type="button"
-        className="shadow-md mt-10 max-md:mt-8 max-md:px-8 max-md:py-3 max-md:text-[4vw] rounded-full px-6 py-2 text-1.25vw] font-semibold text-white bg-[#1b1b1b] hover:bg-sky-700 transition-colors duration-300 ease-in-out"
+        className="shadow-md mt-10 max-md:mt-8 max-md:px-8 max-md:py-3 max-md:text-[4vw] rounded-full px-6 py-2 text-1.25vw font-semibold text-white bg-[#1b1b1b] hover:bg-sky-700 transition-colors duration-300 ease-in-out"
         // className="shadow-md text-xs sm:text-sm sm:h-10 px-2 sm:px-4 cursor-pointer"
       >
         Learn more
