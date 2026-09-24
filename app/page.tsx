@@ -8,6 +8,7 @@ import EventCard from "@/components/EventCard";
 import { getHomePageData } from "@/lib/data/home";
 import TagLoading from "@/components/TagLoading";
 import AbstractCards from "@/components/AbstractCards";
+import TopLogo from "@/components/TopLogo";
 const Home = async () => {
   const { events, dogs } = await getHomePageData();
 
@@ -15,14 +16,7 @@ const Home = async () => {
     <Suspense fallback={<TagLoading />}>
       <section>
         <div className="mt-[-70]">
-          <Image
-            src={"/images/logo_bringlovehome_b.png"}
-            alt={"Bring Love Home"}
-            // fill
-            className="mx-auto object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-            width={300}
-            height={300}
-          />
+          <TopLogo />
         </div>
 
         <div className="mt-[-10] space-y-7">
